@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@develop
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@v0
         with:
           version: '290.0.1'
           service_account_key: ${{ secrets.GCE_SA_KEY }}
