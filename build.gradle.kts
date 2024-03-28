@@ -20,6 +20,11 @@ configurations {
     }
 }
 
+tasks.bootJar {
+    mainClass.set("shop.hyeonme.me.MeServerApplicationKt")
+    archiveFileName.set("me.jar")
+}
+
 repositories {
     mavenCentral()
 }
