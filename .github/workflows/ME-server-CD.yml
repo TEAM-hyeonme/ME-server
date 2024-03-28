@@ -9,11 +9,15 @@ env:
   PROJECT_ID: ${{ secrets.GCE_PROJECT }}
   GCE_INSTANCE: me-server 
   GCE_INSTANCE_ZONE: us-central1-a
-
+   
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    
 
     steps:
       - name: Checkout
