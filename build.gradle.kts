@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.1.10"
+    id("org.springframework.boot") version "2.7.10"
     id("io.spring.dependency-management") version "1.1.4"
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
@@ -11,7 +11,7 @@ group = "shop.hyeonme"
 version = "0.0.1-SNAPSHOT"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_11
 }
 
 configurations {
@@ -38,14 +38,10 @@ dependencies {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "17"
+        jvmTarget = "11"
     }
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
-}
-
-tasks.bootBuildImage {
-    builder.set("paketobuildpacks/builder-jammy-base:latest")
 }
