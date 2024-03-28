@@ -3,9 +3,8 @@ ENV APP_HOME=/usr/app/
 WORKDIR $APP_HOME
 COPY build.gradle.kts settings.gradle.kts gradlew $APP_HOME/
 COPY gradle $APP_HOME/gradle/
-RUN chmod +x gradlew
-RUN ./gradlew -x test --info || return 0
 COPY . .
+RUN chmod +x $APP_HOME/gradlew
 RUN ./gradlew -x test build
 
 FROM adoptopenjdk/openjdk11:latest
