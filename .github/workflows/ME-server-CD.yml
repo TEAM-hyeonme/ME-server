@@ -23,9 +23,6 @@ jobs:
         with:
           workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
-
-      - uses: 'google-github-actions/setup-gcloud@v2'
-        with:
           version: '>= 363.0.0'
 
       - run: |-
