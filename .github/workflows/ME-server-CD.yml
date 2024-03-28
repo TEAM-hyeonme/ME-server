@@ -1,0 +1,59 @@
+name: GCP CD
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  PROJECT_ID: ${{ secrets.GCE_PROJECT }}
+  GCE_INSTANCE: me-server # TODO: update to instance name
+  GCE_INSTANCE_ZONE: us-central1-a # TODO: update to instance zone
+
+jobs:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '290.0.1'
+          service_account_key: $
+          project_id: $
+
+      - run: |-
+          gcloud --quiet auth configure-docker
+          
+      - name: Build
+        run: |-
+          docker build --tag "gcr.io/$PROJECT_ID/$GCE_INSTANCE-image:$GITHUB_SHA" .
+          
+      - name: Publish
+        run: |-
+          docker push "gcr.io/$PROJECT_ID/$GCE_INSTANCE-image:$GITHUB_SHA"
+          
+      - name: Deploy
+        run: |-
+          gcloud compute instances update-container "$GCE_INSTANCE" \
+            --zone "$GCE_INSTANCE_ZONE" \
+            --container-image "gcr.io/$PROJECT_ID/$GCE_INSTANCE-image:$GITHUB_SHA"
+
+      - name: ME-server-CD Discord Notification
+        uses: sarisia/actions-status-discord@v1
+        if: ${{ success() }}
+        with:
+          title: 🙆‍♀️ ME-server-CD 성공! 🙆‍♀️
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          color: 00FF00
+  
+      - name: ME-server-CD Discord Notification
+        uses: sarisia/actions-status-discord@v1
+        if: ${{ failure() }}
+        with:
+          title: 🤦‍♂️ ME-server-CD 실패! 🤦‍♂️
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          color: FF0000
