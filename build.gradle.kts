@@ -1,5 +1,3 @@
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-
 plugins {
     kotlin("jvm") version "1.7.10"
     id("org.springframework.boot") version "2.7.5"
@@ -52,8 +50,4 @@ allprojects {
     }
 
 
-}
-
-tasks.withType<BootJar> {
-    mainClass.set("shop.hyeonme.me.MeServerApplication")
 }
