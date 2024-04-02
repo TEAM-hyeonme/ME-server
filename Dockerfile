@@ -4,7 +4,7 @@ WORKDIR $APP_HOME
 COPY build.gradle.kts settings.gradle.kts gradlew $APP_HOME/
 COPY gradle $APP_HOME/gradle/
 RUN chmod +x $APP_HOME/gradlew
-RUN ./gradlew -x test build
+RUN ./gradlew clean build --exclude-task test
 
 FROM adoptopenjdk/openjdk11:latest
 ENV ARTIFACT_NAME=me-api.jar
