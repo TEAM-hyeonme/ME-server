@@ -53,5 +53,5 @@ allprojects {
 }
 
 tasks.bootJar {
-    mainClass.set("me-api.src.main.kotlin.shop.hyeonme.me.MeServerApplication.kt")
+    mainClass.set("me-api.src.main.kotlin.shop.hyeonme.me.MeServerApplication")
 }
