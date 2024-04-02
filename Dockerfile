@@ -1,6 +1,12 @@
-FROM openjdk:11-jdk-slim
-WORKDIR /app
-ARG JAR_FILE=me-api/build/libs/*.jar
-COPY $JAR_FILE me-api.jar
-ENV TZ=Asia/Seoul
-CMD ["java", "-jar", "-Dspring.profiles.active=prod", "me-api.jar"]
+FROM openjdk:11-jdk
+
+WORKDIR /usr/src/app
+
+ARG JAR_DR=me-api/build/libs
+ARG JAR_FILE=me-api-0.0.1-SNAPSHOT.jar
+
+COPY $JAR_DR/$JAR_FILE $JAR_DR/$JAR_FILE
+
+EXPOSE 8080
+
+CMD ["java","-jar","$JAR_DR/$JAR_FILE"]
