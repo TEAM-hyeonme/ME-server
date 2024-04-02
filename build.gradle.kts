@@ -49,4 +49,9 @@ allprojects {
         mavenCentral()
     }
 
+
+}
+
+tasks.bootJar {
+    mainClass.set("me-api.src.kotlin.shop.hyeonme.me.MeServerApplication.kt")
 }
