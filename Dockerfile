@@ -3,7 +3,6 @@ ENV APP_HOME=/usr/app/
 WORKDIR $APP_HOME
 COPY build.gradle.kts settings.gradle.kts gradlew $APP_HOME/
 COPY gradle $APP_HOME/gradle/
-COPY . .
 RUN chmod +x $APP_HOME/gradlew
 RUN ./gradlew -x test build
 
