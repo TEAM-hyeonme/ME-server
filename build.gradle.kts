@@ -48,6 +48,8 @@ allprojects {
     repositories {
         mavenCentral()
     }
+}
 
-
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
+    mainClass.set("shop.hyeonme.me.MeServerApplication")
 }

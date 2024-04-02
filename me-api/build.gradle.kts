@@ -20,7 +20,3 @@ kapt {
 tasks.getByName<Jar>("jar") {
     enabled = false
 }
-
-tasks.withType<BootJar> {
-    mainClass.set("shop.hyeonme.me.MeServerApplication")
-}
