@@ -14,3 +14,7 @@ kapt {
         arg("mapstruct.unmappedTargetPolicy", "ignore")
     }
 }
+
+tasks.getByName<Jar>("jar") {
+    enabled = false
+}
