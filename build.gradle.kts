@@ -1,52 +1,52 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
-    id("org.springframework.boot") version "2.7.10"
-    id("io.spring.dependency-management") version "1.1.4"
-    kotlin("jvm") version "1.8.22"
-    kotlin("plugin.spring") version "1.8.22"
+    kotlin("jvm") version "1.7.10"
+    id("org.springframework.boot") version "2.7.5"
+    id("io.spring.dependency-management") version "1.0.13.RELEASE"
+    kotlin("plugin.spring") version "1.7.10"
+    kotlin("plugin.jpa") version "1.7.10"
 }
 
-group = "shop.hyeonme"
-version = "0.0.1-SNAPSHOT"
+subprojects {
+    apply(plugin = "java")
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-}
+    apply(plugin = "io.spring.dependency-management")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
+    apply(plugin = "kotlin")
+    apply(plugin = "kotlin-spring")
+
+    apply {
+        plugin("org.jetbrains.kotlin.kapt")
+        version = "1.7.10"
     }
 }
 
-tasks.bootJar {
-    mainClass.set("shop.hyeonme.me.MeServerApplicationKt")
-    archiveFileName.set("me.jar")
-}
+allprojects {
+    group = "shop.hyeonme"
+    version = "0.0.1-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
+    apply(plugin = "jacoco")
 
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    runtimeOnly("com.mysql:mysql-connector-j")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.security:spring-security-test")
-}
+    tasks {
+        compileKotlin {
+            kotlinOptions {
+                freeCompilerArgs = listOf("-Xjsr305=strict")
+                jvmTarget = "11"
+            }
+        }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "11"
+        compileJava {
+            sourceCompatibility = JavaVersion.VERSION_11.majorVersion
+        }
+
+        test {
+            useJUnitPlatform()
+        }
     }
-}
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+    repositories {
+        mavenCentral()
+    }
+
 }
