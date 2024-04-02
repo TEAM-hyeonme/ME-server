@@ -1,16 +1,6 @@
-FROM adoptopenjdk/openjdk11:latest AS TEMP_BUILD_IMAGE
-ENV APP_HOME=/usr/app/
-WORKDIR $APP_HOME
-COPY build.gradle.kts settings.gradle.kts gradlew $APP_HOME/
-COPY gradle $APP_HOME/gradle/
-RUN chmod +x $APP_HOME/gradlew
-RUN ./gradlew clean build --exclude-task test
-
-FROM adoptopenjdk/openjdk11:latest
-ENV ARTIFACT_NAME=me-api.jar
-ENV APP_HOME=/usr/app/
-WORKDIR $APP_HOME
-COPY --from=TEMP_BUILD_IMAGE $APP_HOME/build/libs/$ARTIFACT_NAME .
-
-EXPOSE 8080
-ENTRYPOINT java -jar $ARTIFACT_NAME
+FROM openjdk:11-jdk-slim
+WORKDIR /app
+ARG JAR_FILE=me-api/build/libs/*.jar
+COPY ${JAR_FILE} me-api-0.0.1-SNAPSHOT.jar
+ENV TZ=Asia/Seoul
+CMD ["java", "-jar", "-Dspring.profiles.active=prod", "me-api-0.0.1-SNAPSHOT.jar"]
