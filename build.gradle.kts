@@ -50,3 +50,8 @@ allprojects {
     }
 
 }
+
+tasks.bootJar {
+    mainClass.set("me-api.src.main.shop.kotlin.hyeonme.me.MeServerApplicationKt")
+    archiveFileName.set("me.jar")
+}
