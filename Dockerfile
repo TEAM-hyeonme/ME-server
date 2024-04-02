@@ -1,11 +1,17 @@
-FROM openjdk:11-jdk
+FROM adoptopenjdk/openjdk11:latest AS TEMP_BUILD_IMAGE
+ENV APP_HOME=/usr/app/
+WORKDIR $APP_HOME
+COPY build.gradle.kts settings.gradle.kts gradlew $APP_HOME/
+COPY gradle $APP_HOME/gradle/
+COPY . .
+RUN chmod +x $APP_HOME/gradlew
+RUN ./gradlew -x test build
 
-WORKDIR /usr/src/app
-
-ARG JAR_FILE=me-api/build/libs/me-api-0.0.1-SNAPSHOT.jar
-
-COPY $JAR_FILE app.jar
+FROM adoptopenjdk/openjdk11:latest
+ENV ARTIFACT_NAME=me-api.jar
+ENV APP_HOME=/usr/app/
+WORKDIR $APP_HOME
+COPY --from=TEMP_BUILD_IMAGE $APP_HOME/build/libs/$ARTIFACT_NAME .
 
 EXPOSE 8080
-
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT java -jar $ARTIFACT_NAME
