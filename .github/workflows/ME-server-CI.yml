@@ -1,0 +1,45 @@
+name: ME_SERVER_CI
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run build with Gradle wrapper
+        run: ./gradlew clean me-api:build -i
+
+      - name: ME-server-CI Discord Notification
+        uses: sarisia/actions-status-discord@v1
+        if: ${{ success() }}
+        with:
+          title: 🙆‍♀️ ME-server-CI 성공! 🙆‍♀️
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          color: 00FF00
+
+      - name: ME-server-CI Discord Notification
+        uses: sarisia/actions-status-discord@v1
+        if: ${{ failure() }}
+        with:
+          title: 🤦‍♂️ ME-server-CI 실패! 🤦‍♂️
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          color: FF0000
