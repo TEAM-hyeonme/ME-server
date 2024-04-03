@@ -1,4 +1,4 @@
-name: GCP CD
+name: ME_SERVER_CD
 
 on:
   push:
