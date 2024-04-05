@@ -1,9 +1,9 @@
 plugins {
-    kotlin("jvm") version "1.7.10"
+    kotlin("jvm") version "1.8.10"
     id("org.springframework.boot") version "2.7.5"
     id("io.spring.dependency-management") version "1.0.13.RELEASE"
-    kotlin("plugin.spring") version "1.7.10"
-    kotlin("plugin.jpa") version "1.7.10"
+    kotlin("plugin.spring") version "1.8.10"
+    kotlin("plugin.jpa") version "1.8.10"
 }
 
 subprojects {
@@ -18,7 +18,7 @@ subprojects {
 
     apply {
         plugin("org.jetbrains.kotlin.kapt")
-        version = "1.7.10"
+        version = "1.8.10"
     }
 }
 
