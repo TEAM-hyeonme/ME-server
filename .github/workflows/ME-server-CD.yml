@@ -22,17 +22,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - uses: 'google-github-actions/auth@v1'
-        with:
-          token_format: 'access_token'
-          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-          service_account: ${{ secrets.SERVICE_ACCOUNT }}
-          
-      - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v1
-
-      - run: |-
-          gcloud --quiet auth configure-docker
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+        shell: bash
 
       - name: Create application.yml on dev
         run: |
@@ -40,13 +32,21 @@ jobs:
           echo "${{ secrets.ME_GCP_ENV }}" > ./me-api/src/main/resources/application.yml
         shell: bash
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
-        shell: bash
-
       - name: Build with Gradle
         run: ./gradlew clean me-api:build -i
         shell: bash
+
+      - uses: 'google-github-actions/auth@v1'
+        with:
+          token_format: 'access_token'
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.SERVICE_ACCOUNT }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+
+      - run: |-
+          gcloud --quiet auth configure-docker
           
       - name: Build
         run: |-
