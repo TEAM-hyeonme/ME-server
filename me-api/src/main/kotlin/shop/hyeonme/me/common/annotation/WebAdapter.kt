@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping
-annotation class RequestController(
+annotation class WebAdapter(
     @get:AliasFor(annotation = RequestMapping::class)
     val value: String = ""
 )
