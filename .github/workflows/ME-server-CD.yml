@@ -34,18 +34,18 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
 
+      - name: Create application.yml on dev
+        run: |
+          touch ./me-api/src/main/resources/application.yml
+          echo "${{ secrets.ME_GCP_ENV }}" > ./me-api/src/main/resources/application.yml
+        shell: bash
+
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
         shell: bash
 
       - name: Build with Gradle
         run: ./gradlew clean me-api:build -i
-        shell: bash
-
-      - name: Create application.yml on dev
-        run: |
-          touch ./me-api/src/main/resources/application.yml
-          echo "${{ secrets.ME_GCP_ENV }}" > ./me-api/src/main/resources/application.yml
         shell: bash
           
       - name: Build
