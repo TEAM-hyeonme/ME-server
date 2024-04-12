@@ -14,3 +14,10 @@ spring:
   redis:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}
+
+apple:
+  team-id: ${APPLE_TEAM_ID}
+  login-key: ${APPLE_LOGIN_KEY}
+  client-id: ${APPLE_CLIENT_ID}
+  redirect-url: ${APPLE_REDIRECT_URL}
+  key-path: ${APPLE_KEY_PATH}
