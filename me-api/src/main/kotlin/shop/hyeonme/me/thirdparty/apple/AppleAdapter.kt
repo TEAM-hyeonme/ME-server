@@ -17,5 +17,5 @@ class AppleAdapter(
         "$APPLE_AUTH_URL/auth/authorize?" +
             "client_id=${appleProperties.clientId}" +
             "&redirect_uri=${appleProperties.redirectUrl}" +
-            "&response_type=code%20id_token&scope=name%20email&response_mode=form_post";
+            "&response_type=code%20id_token&scope=name%20email&response_mode=form_post"
 }
