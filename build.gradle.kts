@@ -20,6 +20,10 @@ subprojects {
         plugin("org.jetbrains.kotlin.kapt")
         version = "1.8.10"
     }
+
+    dependencies {
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+    }
 }
 
 allprojects {
