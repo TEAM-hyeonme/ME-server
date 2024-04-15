@@ -24,7 +24,12 @@ class SecurityConfig {
                 CorsUtils.isPreFlightRequest(request)
             }).permitAll()
 
+            // Health
             .mvcMatchers(HttpMethod.GET, "/health").permitAll()
+
+            // Auth
+            .mvcMatchers(HttpMethod.GET, "/auth/apple").permitAll()
+            .mvcMatchers(HttpMethod.POST, "/auth/apple").permitAll()
 
             .anyRequest().authenticated()
             .and()
