@@ -1,7 +1,9 @@
 package shop.hyeonme.me.thirdparty.apple.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.ConstructorBinding
 
+@ConstructorBinding
 @ConfigurationProperties(prefix = "apple")
 data class AppleProperties(
     val teamId: String,
