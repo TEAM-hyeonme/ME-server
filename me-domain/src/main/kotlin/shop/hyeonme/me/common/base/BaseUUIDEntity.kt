@@ -14,6 +14,7 @@ abstract class BaseUUIDEntity(
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)", nullable = false)
+    @get:JvmName(name = "getIdentifier")
     open var id: UUID = UUID(0,0)
 ) : BaseTimeEntity(), Persistable<UUID> {
     override fun getId() = id
