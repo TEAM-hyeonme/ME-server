@@ -21,3 +21,7 @@ apple:
   client-id: ${APPLE_CLIENT_ID:}
   redirect-url: ${APPLE_REDIRECT_URL:}
   key-path: ${APPLE_KEY_PATH:}
+jwt:
+  access-exp: ${JWT_ACCESS_EXP:3600}
+  refresh-exp: ${JWT_REFRESH_EXP:108000}
+  secret-key: ${JWT_SECRET_KEY:mesecretkeyhaveagooddaybaby}
