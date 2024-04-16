@@ -1,14 +1,14 @@
 package shop.hyeonme.me.domain.user.entity
 
 import shop.hyeonme.me.common.base.BaseUUIDEntity
-import shop.hyeonme.me.common.enums.Role
+import shop.hyeonme.me.domain.auth.model.Role
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
 
 @Entity
-class User (
+class UserEntity (
     @Column(columnDefinition = "VARCHAR(8)", nullable = false)
     val name: String,
 
