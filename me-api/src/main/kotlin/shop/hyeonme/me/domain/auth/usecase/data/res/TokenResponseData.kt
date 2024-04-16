@@ -3,7 +3,7 @@ package shop.hyeonme.me.domain.auth.usecase.data.res
 import shop.hyeonme.me.common.enums.Role
 import java.time.LocalDateTime
 
-data class AppleSignInResponseData(
+data class TokenResponseData(
     val accessToken: String,
     val refreshToken: String,
     val accessExpiredAt: LocalDateTime,

@@ -3,7 +3,7 @@ package shop.hyeonme.me.domain.auth.presentation.web.res
 import shop.hyeonme.me.common.enums.Role
 import java.time.LocalDateTime
 
-data class AppleSignInWebResponse(
+data class TokenWebResponse(
     val accessToken: String,
     val refreshToken: String,
     val accessExpiredAt: LocalDateTime,
