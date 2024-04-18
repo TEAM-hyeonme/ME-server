@@ -8,8 +8,7 @@ import shop.hyeonme.domain.auth.usecase.data.res.TokenResponseData
 import shop.hyeonme.domain.auth.usecase.data.res.GetAppleSignInUrlResponseData
 
 fun AppleSignInWebRequest.toRequest() = AppleSignInRequestData(
-    id = id,
-    user = user
+    id = id
 )
 
 fun TokenResponseData.toResponse() = TokenWebResponse(
