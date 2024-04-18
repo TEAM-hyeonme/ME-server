@@ -1,3 +1,4 @@
 rootProject.name = "me"
-include("me-api")
 include("me-domain")
+include("me-api")
+include("me-infra")
