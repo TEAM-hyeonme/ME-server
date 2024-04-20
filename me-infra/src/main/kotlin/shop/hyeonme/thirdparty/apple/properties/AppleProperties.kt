@@ -10,5 +10,5 @@ data class AppleProperties(
     val loginKey: String,
     val clientId: String,
     val redirectUrl: String,
-    val keyPath: String
+    val authKey: String
 )
