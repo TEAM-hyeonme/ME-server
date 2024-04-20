@@ -1,6 +1,6 @@
 package shop.hyeonme.thirdparty.apple.data
 
-import java.util.Base64;
+import java.util.Base64
 import java.math.BigInteger
 import java.security.spec.RSAPublicKeySpec
 
