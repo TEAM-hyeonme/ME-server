@@ -9,6 +9,8 @@ import shop.hyeonme.common.annotation.WebAdapter
 import shop.hyeonme.domain.auth.mapper.toRequest
 import shop.hyeonme.domain.auth.mapper.toResponse
 import shop.hyeonme.domain.auth.presentation.web.req.AppleSignInWebRequest
+import shop.hyeonme.domain.auth.presentation.web.res.GetAppleSignInUrlWebResponse
+import shop.hyeonme.domain.auth.presentation.web.res.TokenWebResponse
 import shop.hyeonme.domain.auth.usecase.AppleSignInUseCase
 import shop.hyeonme.domain.auth.usecase.GetAppleSignInUrlUseCase
 import javax.validation.Valid
@@ -19,12 +21,12 @@ class AuthWebAdapter(
     private val appleSignInUseCase: AppleSignInUseCase
 ) {
     @GetMapping("/apple")
-    fun getAppleSignInUrl(): ResponseEntity<shop.hyeonme.domain.auth.presentation.web.res.GetAppleSignInUrlWebResponse> =
+    fun getAppleSignInUrl(): ResponseEntity<GetAppleSignInUrlWebResponse> =
         getAppleSignInUrlUseCase.execute()
             .let { ResponseEntity.status(HttpStatus.OK).body(it.toResponse()) }
 
     @PostMapping("/apple")
-    fun appleSignIn(@RequestBody @Valid webRequest: AppleSignInWebRequest): ResponseEntity<shop.hyeonme.domain.auth.presentation.web.res.TokenWebResponse> =
+    fun appleSignIn(@Valid webRequest: AppleSignInWebRequest): ResponseEntity<TokenWebResponse> =
         appleSignInUseCase.execute(webRequest.toRequest())
             .let { ResponseEntity.status(HttpStatus.OK).body(it.toResponse()) }
 }
