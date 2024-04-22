@@ -1,8 +1,8 @@
 package shop.hyeonme.domain.auth.service
 
-import shop.hyeonme.common.annotation.Service
+import shop.hyeonme.common.annotation.FacadeService
 
-@Service
+@FacadeService
 class AuthService(
     queryAuthService: QueryAuthService
 ) : QueryAuthService by queryAuthService
