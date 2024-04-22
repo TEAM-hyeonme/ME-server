@@ -2,6 +2,7 @@ package shop.hyeonme.domain.user.entity
 
 import shop.hyeonme.common.base.BaseUUIDEntity
 import shop.hyeonme.domain.auth.model.Role
+import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
@@ -9,6 +10,8 @@ import javax.persistence.Enumerated
 
 @Entity
 class UserEntity (
+    override var id: UUID,
+
     @Column(columnDefinition = "VARCHAR(8)", nullable = false)
     val name: String,
 
