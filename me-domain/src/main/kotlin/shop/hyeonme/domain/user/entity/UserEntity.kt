@@ -7,9 +7,12 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
+import javax.persistence.Table
 
 @Entity
+@Table(name = "user")
 class UserEntity (
+    @get:JvmName("getIdentifier")
     override var id: UUID,
 
     @Column(columnDefinition = "VARCHAR(8)", nullable = false)
@@ -21,4 +24,4 @@ class UserEntity (
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
     val email: String
-) : BaseUUIDEntity()
+) : BaseUUIDEntity(id)

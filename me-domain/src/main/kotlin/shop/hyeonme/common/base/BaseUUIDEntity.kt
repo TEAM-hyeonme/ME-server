@@ -19,6 +19,12 @@ abstract class BaseUUIDEntity(
 ) : BaseTimeEntity(), Persistable<UUID> {
     override fun getId() = id
 
-    override fun isNew() = (id == UUID(0,0))
-        .also { isNew -> if(isNew) id = UUID.randomUUID() }
+    override fun isNew(): Boolean {
+        if(id == UUID(0,0)) {
+            id = UUID.randomUUID()
+            return false
+        } else {
+            return true
+        }
+    }
 }

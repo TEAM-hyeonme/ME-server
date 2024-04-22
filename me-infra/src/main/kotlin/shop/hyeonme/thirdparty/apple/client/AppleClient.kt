@@ -9,6 +9,6 @@ import shop.hyeonme.thirdparty.apple.data.ApplePublicKeys
     url = "https://appleid.apple.com/auth"
 )
 interface AppleClient {
-    @GetMapping("/keys")
+    @GetMapping(value = ["/keys"], consumes = ["application/x-www-form-urlencoded;charset=utf-8"])
     fun applePublicKeys(): ApplePublicKeys?
 }
