@@ -15,7 +15,7 @@ import shop.hyeonme.common.annotation.*
             classes = [
                 UseCase::class,
                 ReadOnlyUseCase::class,
-                Service::class,
+                FacadeService::class,
                 QueryService::class,
                 CommandService::class
             ]
