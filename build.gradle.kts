@@ -1,9 +1,9 @@
 plugins {
     kotlin("jvm") version "1.8.10"
-    id("org.springframework.boot") version "2.7.5"
-    id("io.spring.dependency-management") version "1.0.13.RELEASE"
     kotlin("plugin.spring") version "1.8.10"
     kotlin("plugin.jpa") version "1.8.10"
+    id("org.springframework.boot") version "2.7.5"
+    id("io.spring.dependency-management") version "1.0.13.RELEASE"
 }
 
 subprojects {
@@ -22,6 +22,8 @@ subprojects {
     }
 
     dependencies {
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
         implementation("org.springframework.boot:spring-boot-starter")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
