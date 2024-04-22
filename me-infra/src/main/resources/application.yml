@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/${DB_NAME:me}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: mysql
+    hibernate:
+      ddl-auto: update
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+
+apple:
+  team-id: ${APPLE_TEAM_ID:}
+  login-key: ${APPLE_LOGIN_KEY:}
+  client-id: ${APPLE_CLIENT_ID:}
+  redirect-url: ${APPLE_REDIRECT_URL:}
+  key-path: ${APPLE_KEY_PATH:}
+jwt:
+  access-exp: ${JWT_ACCESS_EXP:3600}
+  refresh-exp: ${JWT_REFRESH_EXP:108000}
+  secret-key: ${JWT_SECRET_KEY:mesecretkeyhaveagooddaybaby}

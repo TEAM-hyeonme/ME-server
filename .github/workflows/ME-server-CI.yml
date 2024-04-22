@@ -26,7 +26,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Run build with Gradle wrapper
-        run: ./gradlew clean me-api:build -i
+        run: ./gradlew clean me-infra:build -i
 
       - name: ME-server-CI Discord Notification
         uses: sarisia/actions-status-discord@v1

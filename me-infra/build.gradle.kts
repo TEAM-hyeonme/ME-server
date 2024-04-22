@@ -1,12 +1,7 @@
-plugins {
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.7.20"
-}
-
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     kapt("org.springframework.boot:spring-boot-configuration-processor")
@@ -17,12 +12,24 @@ dependencies {
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.2")
 
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+
     implementation(kotlin("stdlib-jdk8"))
+
+    implementation(project(":me-api"))
+    implementation(project(":me-domain"))
 }
 
 kapt {
     arguments {
         arg("mapstruct.defaultComponentModel", "spring")
         arg("mapstruct.unmappedTargetPolicy", "ignore")
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2021.0.3")
     }
 }
