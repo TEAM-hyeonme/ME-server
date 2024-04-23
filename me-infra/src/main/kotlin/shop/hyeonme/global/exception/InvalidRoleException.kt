@@ -1,7 +1,7 @@
 package shop.hyeonme.global.exception
 
 import shop.hyeonme.global.error.GlobalErrorCode
-import shop.hyeonme.global.error.exception.MeException
+import shop.hyeonme.common.exception.MeException
 
 class InvalidRoleException(
     message: String

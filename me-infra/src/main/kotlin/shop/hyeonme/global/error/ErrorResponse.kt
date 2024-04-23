@@ -3,7 +3,7 @@ package shop.hyeonme.global.error
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.validation.BindingResult
 import org.springframework.web.servlet.NoHandlerFoundException
-import shop.hyeonme.global.error.exception.MeException
+import shop.hyeonme.common.exception.MeException
 
 data class ErrorResponse(
     val message: String,

@@ -3,7 +3,7 @@ package shop.hyeonme.global.error.handler
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import shop.hyeonme.global.error.exception.MeException
+import shop.hyeonme.common.exception.MeException
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.validation.BindException

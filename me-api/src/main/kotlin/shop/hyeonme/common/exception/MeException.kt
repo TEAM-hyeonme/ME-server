@@ -1,4 +1,4 @@
-package shop.hyeonme.global.error.exception
+package shop.hyeonme.common.exception
 
 open class MeException (
     override val message: String,
