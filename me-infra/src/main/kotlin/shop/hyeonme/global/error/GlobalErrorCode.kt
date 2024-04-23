@@ -9,6 +9,5 @@ enum class GlobalErrorCode(
     INVALID_ROLE("권한을 증명할 수 없는 사용자입니다.", 401),
     FORBIDDEN("접근할 권한이 없습니다.", 403),
     EXPIRED_TOKEN("토큰이 만료되었습니다.", 401),
-    INVALID_TOKEN("유효하지 않은 토큰입니다.", 401),
-    LOCK_INTERRUPTED("락 획득에 실패했습니다", 500)
+    INVALID_TOKEN("유효하지 않은 토큰입니다.", 401)
 }
