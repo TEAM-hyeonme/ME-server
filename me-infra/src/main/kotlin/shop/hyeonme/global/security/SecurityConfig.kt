@@ -5,11 +5,23 @@ import org.springframework.http.HttpMethod
 import org.springframework.web.cors.CorsUtils
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.util.matcher.RequestMatcher
+import shop.hyeonme.global.config.FilterConfig
+import shop.hyeonme.global.jwt.JwtTokenParser
+import shop.hyeonme.global.security.handler.CustomAccessDeniedHandler
+import shop.hyeonme.global.security.handler.CustomAuthenticationEntryPointHandler
 
 @EnableWebSecurity
-class SecurityConfig {
+class SecurityConfig(
+    private val jwtTokenParser: JwtTokenParser
+) {
+    companion object {
+        const val USER = "USER"
+        const val ADMIN = "ADMIN"
+    }
+
     @Bean
     protected fun filterChain(http: HttpSecurity): SecurityFilterChain =
         http
@@ -17,8 +29,9 @@ class SecurityConfig {
             .and()
             .csrf().disable()
 
-            .formLogin().disable() // 임시
-
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
             .authorizeRequests()
             .requestMatchers(RequestMatcher { request ->
                 CorsUtils.isPreFlightRequest(request)
@@ -34,5 +47,12 @@ class SecurityConfig {
             .anyRequest().authenticated()
             .and()
 
+            .exceptionHandling()
+            .authenticationEntryPoint(CustomAuthenticationEntryPointHandler())
+            .accessDeniedHandler(CustomAccessDeniedHandler())
+            .and()
+
+            .apply(FilterConfig(jwtTokenParser))
+            .and()
             .build()
 }
