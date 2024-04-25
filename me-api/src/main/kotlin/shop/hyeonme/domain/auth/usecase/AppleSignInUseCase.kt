@@ -25,7 +25,7 @@ class AppleSignInUseCase(
             ?: User(
                 email = email,
                 name = name,
-                role = Role.USER
+                role = Role.ROLE_USER
             ).let { userService.saveUser(it) }
 
         return jwtPort.receiveToken(user.id, user.role)

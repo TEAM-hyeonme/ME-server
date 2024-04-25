@@ -1,11 +1,13 @@
 package shop.hyeonme.domain.user
 
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import shop.hyeonme.domain.user.mapper.toEntity
 import shop.hyeonme.domain.user.mapper.toModel
 import shop.hyeonme.domain.user.model.User
 import shop.hyeonme.domain.user.repository.UserRepository
 import shop.hyeonme.domain.user.spi.UserPort
+import java.util.*
 
 @Component
 class UserPersistenceAdapter(
@@ -19,4 +21,7 @@ class UserPersistenceAdapter(
 
     override fun findByEmail(email: String): User? =
         userRepository.findByEmail(email)?.toModel()
+
+    override fun findById(id: UUID): User? =
+        userRepository.findByIdOrNull(id)?.toModel()
 }
