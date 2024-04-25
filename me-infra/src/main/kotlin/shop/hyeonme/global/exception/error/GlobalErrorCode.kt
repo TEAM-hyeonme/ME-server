@@ -1,4 +1,4 @@
-package shop.hyeonme.global.error
+package shop.hyeonme.global.exception.error
 
 enum class GlobalErrorCode(
     val message: String,

@@ -4,6 +4,7 @@ import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.validation.BindingResult
 import org.springframework.web.servlet.NoHandlerFoundException
 import shop.hyeonme.common.exception.MeException
+import shop.hyeonme.global.exception.error.GlobalErrorCode
 
 data class ErrorResponse(
     val message: String,

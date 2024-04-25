@@ -6,7 +6,7 @@ import org.springframework.web.filter.OncePerRequestFilter
 import shop.hyeonme.common.exception.MeException
 import shop.hyeonme.common.logger.LoggerDelegator
 import shop.hyeonme.global.error.ErrorResponse
-import shop.hyeonme.global.error.GlobalErrorCode
+import shop.hyeonme.global.exception.error.GlobalErrorCode
 import shop.hyeonme.global.exception.InternalServerException
 import java.nio.charset.StandardCharsets
 import javax.servlet.FilterChain
