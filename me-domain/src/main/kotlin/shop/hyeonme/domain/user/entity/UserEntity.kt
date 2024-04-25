@@ -19,7 +19,7 @@ class UserEntity (
     val name: String,
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(5)", nullable = false)
+    @Column(columnDefinition = "VARCHAR(10)", nullable = false)
     val role: Role,
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
