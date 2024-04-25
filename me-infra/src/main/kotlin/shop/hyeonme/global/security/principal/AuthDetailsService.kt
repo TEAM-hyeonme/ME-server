@@ -12,7 +12,7 @@ import java.util.*
 class AuthDetailsService(
     private val userService: UserService
 ) : UserDetailsService {
-    override fun loadUserByUsername(username: String?): UserDetails {
+    override fun loadUserByUsername(username: String): UserDetails {
         val userId = UUID.fromString(username)
         val user = userService.findById(userId)
         return AuthDetails(user)
