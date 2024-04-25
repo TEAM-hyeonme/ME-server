@@ -3,6 +3,7 @@ package shop.hyeonme.thirdparty.apple
 import org.springframework.stereotype.Component
 import shop.hyeonme.common.spi.ApplePort
 import shop.hyeonme.domain.auth.spi.JwtPort
+import shop.hyeonme.global.exception.InternalServerException
 import shop.hyeonme.thirdparty.apple.client.AppleClient
 import shop.hyeonme.thirdparty.apple.data.ApplePublicKeys
 import shop.hyeonme.thirdparty.apple.properties.AppleProperties
@@ -46,7 +47,7 @@ class AppleAdapter(
         try {
             return KeyFactory.getInstance(applePublicKey.kty).generatePublic(applePublicKey.publicKeySpec())
         } catch (e: Exception) {
-            throw IllegalArgumentException()
+            throw InternalServerException("Server Error")
         }
     }
 }

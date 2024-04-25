@@ -1,16 +1,16 @@
 package shop.hyeonme.global.jwt
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.jsonwebtoken.Claims
-import io.jsonwebtoken.Header
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.*
 import org.springframework.stereotype.Component
 import shop.hyeonme.domain.auth.model.RefreshToken
 import shop.hyeonme.domain.auth.model.Role
 import shop.hyeonme.domain.auth.spi.JwtPort
 import shop.hyeonme.domain.auth.spi.RefreshTokenPort
 import shop.hyeonme.domain.auth.usecase.data.res.TokenResponseData
+import shop.hyeonme.global.exception.ExpiredTokenException
+import shop.hyeonme.global.exception.InternalServerException
+import shop.hyeonme.global.exception.InvalidTokenException
 import shop.hyeonme.global.jwt.properties.JwtProperties
 import java.security.PublicKey
 import java.time.LocalDateTime
@@ -73,7 +73,12 @@ class JwtAdapter(
             val mapType = objectMapper.typeFactory.constructMapType(Map::class.java, String::class.java, Any::class.java)
             return objectMapper.readValue(decodedHeader, mapType) as Map<String, String>
         } catch (e: Exception) {
-            throw IllegalArgumentException()
+            when(e) {
+                is ExpiredJwtException -> throw ExpiredTokenException("토큰이 만료되었습니다.")
+                is InvalidClaimException -> throw InvalidTokenException("유효하지 않은 토큰입니다.")
+                is JwtException -> throw InvalidTokenException("유효하지 않은 토큰입니다.")
+                else -> throw InternalServerException("Server Error")
+            }
         }
     }
 
@@ -85,7 +90,12 @@ class JwtAdapter(
                 .parseClaimsJws(token)
                 .body
         } catch (e: java.lang.Exception) {
-            throw java.lang.IllegalArgumentException()
+            when(e) {
+                is ExpiredJwtException -> throw ExpiredTokenException("토큰이 만료되었습니다.")
+                is InvalidClaimException -> throw InvalidTokenException("유효하지 않은 토큰입니다.")
+                is JwtException -> throw InvalidTokenException("유효하지 않은 토큰입니다.")
+                else -> throw InternalServerException("Server Error")
+            }
         }
     }
 }
