@@ -3,6 +3,7 @@ package shop.hyeonme.global.jwt
 import io.jsonwebtoken.*
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import shop.hyeonme.global.exception.ExpiredTokenException
 import shop.hyeonme.global.exception.InternalServerException
@@ -19,32 +20,35 @@ class JwtTokenParser(
     fun parseAccessToken(request: HttpServletRequest): String? =
         request.getHeader(JwtProperties.HEADER)
             .let { it ?: return null }
-            .let { if (it.startsWith(JwtProperties.PREFIX))
-                it.replace(JwtProperties.PREFIX, "")
-            else null }
+            .run { if (startsWith(JwtProperties.PREFIX)) replace(JwtProperties.PREFIX, "") else null }
+    fun authentication(accessToken: String): Authentication {
+        val claims = getClaims(accessToken)
 
-    fun parseRefreshToken(refreshToken: String): String? =
-        if (refreshToken.startsWith(JwtProperties.PREFIX))
-            refreshToken.replace(JwtProperties.PREFIX, "")
-        else null
+        if(claims.header[Header.JWT_TYPE] != JwtProperties.ACCESS)
+            throw throw InvalidTokenException("유효하지 않은 토큰입니다.")
 
-    fun authentication(accessToken: String): Authentication =
-        authDetailsService.loadUserByUsername(getTokenBody(accessToken, jwtProperties.secretKey).subject)
-            .let { UsernamePasswordAuthenticationToken(it, "", it.authorities) }
+        val userDetails = getDetails(claims.body)
 
-    private fun getTokenBody(token: String, secret: String): Claims =
-        try {
-            Jwts.parserBuilder()
-                .setSigningKey(secret)
-                .build()
+        return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
+    }
+
+    private fun getClaims(token: String): Jws<Claims> {
+        return try {
+            Jwts.parser()
+                .setSigningKey(jwtProperties.secretKey)
                 .parseClaimsJws(token)
-                .body
         } catch (e: Exception) {
-            when (e) {
+            when(e) {
                 is ExpiredJwtException -> throw ExpiredTokenException("토큰이 만료되었습니다.")
                 is InvalidClaimException -> throw InvalidTokenException("유효하지 않은 토큰입니다.")
                 is JwtException -> throw InvalidTokenException("유효하지 않은 토큰입니다.")
                 else -> throw InternalServerException("Server Error")
             }
         }
+    }
+
+    private fun getDetails(body: Claims): UserDetails {
+        val role = body[JwtProperties.ROLE, String::class.java]
+        return authDetailsService.loadUserByUsername(body.id)
+    }
 }
