@@ -5,4 +5,5 @@ import shop.hyeonme.domain.auth.model.RefreshToken
 
 interface CommandRefreshTokenPort {
     fun saveRefreshToken(refreshToken: RefreshToken): RefreshToken
+    fun deleteRefreshToken(refreshToken: RefreshToken)
 }

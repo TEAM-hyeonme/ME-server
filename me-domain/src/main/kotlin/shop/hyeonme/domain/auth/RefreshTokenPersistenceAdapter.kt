@@ -13,4 +13,7 @@ class RefreshTokenPersistenceAdapter(
 ) : RefreshTokenPort {
     override fun saveRefreshToken(refreshToken: RefreshToken): RefreshToken =
         refreshTokenRepository.save(refreshToken.toEntity()).toModel()
+
+    override fun deleteRefreshToken(refreshToken: RefreshToken) =
+        refreshTokenRepository.delete(refreshToken.toEntity())
 }
