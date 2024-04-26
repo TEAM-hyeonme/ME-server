@@ -43,6 +43,7 @@ class SecurityConfig(
             // Auth
             .mvcMatchers(HttpMethod.GET, "/auth/apple").permitAll()
             .mvcMatchers(HttpMethod.POST, "/auth/apple").permitAll()
+            .mvcMatchers(HttpMethod.PATCH, "/auth").permitAll()
 
             .anyRequest().authenticated()
             .and()
