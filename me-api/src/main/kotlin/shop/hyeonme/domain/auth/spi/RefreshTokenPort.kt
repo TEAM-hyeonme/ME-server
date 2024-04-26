@@ -1,3 +1,3 @@
 package shop.hyeonme.domain.auth.spi
 
-interface RefreshTokenPort : CommandRefreshTokenPort
+interface RefreshTokenPort : CommandRefreshTokenPort, QueryRefreshTokenPort
