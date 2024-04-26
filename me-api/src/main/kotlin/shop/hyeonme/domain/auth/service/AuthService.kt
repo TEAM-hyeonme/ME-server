@@ -4,5 +4,7 @@ import shop.hyeonme.common.annotation.FacadeService
 
 @FacadeService
 class AuthService(
-    queryAuthService: QueryAuthService
-) : QueryAuthService by queryAuthService
+    queryAuthService: QueryAuthService,
+    commandAuthService: CommandAuthService
+) : QueryAuthService by queryAuthService,
+    CommandAuthService by commandAuthService
