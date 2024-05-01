@@ -19,6 +19,6 @@ class InventoryEntity(
     val barcodeUrl: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gifticon_id", columnDefinition = "")
+    @JoinColumn(name = "gifticon_id", columnDefinition = "BINARY(16)")
     val gifticon: GifticonEntity
 ) : BaseUUIDEntity(id)
