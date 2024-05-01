@@ -1,10 +1,8 @@
 package shop.hyeonme.domain.order.entity
 
-import org.springframework.data.annotation.CreatedDate
 import shop.hyeonme.common.base.BaseLongEntity
 import shop.hyeonme.domain.coupon.entity.CouponEntity
 import shop.hyeonme.domain.point.entity.UsedPointEntity
-import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -19,9 +17,5 @@ class OrderEntity(
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "used_point_id", columnDefinition = "INT", nullable = false)
-    val usedPoint: UsedPointEntity,
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")
-    val createdAt: LocalDateTime
+    val usedPoint: UsedPointEntity
 ) : BaseLongEntity(id)

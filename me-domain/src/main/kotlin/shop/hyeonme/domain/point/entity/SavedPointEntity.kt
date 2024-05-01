@@ -1,8 +1,6 @@
 package shop.hyeonme.domain.point.entity
 
-import org.springframework.data.annotation.CreatedDate
 import shop.hyeonme.common.base.BaseLongEntity
-import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -16,9 +14,5 @@ class SavedPointEntity(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "point_id", columnDefinition = "BINARY(16)", nullable = false)
-    val point: PointEntity,
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")
-    val createdAt: LocalDateTime
+    val point: PointEntity
 ) : BaseLongEntity(id)

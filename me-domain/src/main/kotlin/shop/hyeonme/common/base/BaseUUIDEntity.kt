@@ -16,7 +16,7 @@ abstract class BaseUUIDEntity(
     @Column(columnDefinition = "BINARY(16)", nullable = false)
     @get:JvmName(name = "getIdentifier")
     open var id: UUID = UUID(0,0)
-) : Persistable<UUID> {
+) : BaseTimeEntity(), Persistable<UUID> {
     override fun getId() = id
 
     override fun isNew(): Boolean {

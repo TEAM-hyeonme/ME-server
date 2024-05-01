@@ -8,5 +8,6 @@ data class Inventory(
     val id: UUID = UUID(0,0),
     val expiredAt: LocalDateTime,
     val barcodeUrl: String,
-    val gifticon: Gifticon
+    val gifticon: Gifticon,
+    val createdDate: LocalDateTime
 )

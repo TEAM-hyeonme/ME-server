@@ -1,9 +1,7 @@
 package shop.hyeonme.domain.coupon.entity
 
-import org.springframework.data.annotation.CreatedDate
 import shop.hyeonme.common.base.BaseUUIDEntity
 import shop.hyeonme.domain.inventory.entity.InventoryEntity
-import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
@@ -18,9 +16,5 @@ class CouponEntity(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory_id", columnDefinition = "BINARY(16)", nullable = false)
-    val inventory: InventoryEntity,
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")
-    val createdAt: LocalDateTime
+    val inventory: InventoryEntity
 ) : BaseUUIDEntity(id)

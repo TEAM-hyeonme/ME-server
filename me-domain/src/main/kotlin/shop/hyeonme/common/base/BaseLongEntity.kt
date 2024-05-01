@@ -9,7 +9,7 @@ abstract class BaseLongEntity(
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     open val id: Long = 0L
-) : Persistable<Long> {
+) : BaseTimeEntity(), Persistable<Long> {
     override fun getId() = id
 
     override fun isNew() = id == 0L

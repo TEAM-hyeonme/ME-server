@@ -1,9 +1,7 @@
 package shop.hyeonme.domain.user.entity
 
-import org.springframework.data.annotation.CreatedDate
 import shop.hyeonme.common.base.BaseUUIDEntity
 import shop.hyeonme.domain.auth.model.enums.Role
-import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -25,9 +23,5 @@ class UserEntity (
     val role: Role,
 
     @Column(columnDefinition = "VARCHAR(255)", nullable = false)
-    val email: String,
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")
-    val createdAt: LocalDateTime
+    val email: String
 ) : BaseUUIDEntity(id)
