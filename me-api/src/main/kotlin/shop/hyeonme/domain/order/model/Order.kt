@@ -8,5 +8,5 @@ data class Order(
     val id: Long = 0L,
     val userId: UUID,
     val coupon: Coupon,
-    val createdDate: LocalDateTime
+    val createdAt: LocalDateTime
 )

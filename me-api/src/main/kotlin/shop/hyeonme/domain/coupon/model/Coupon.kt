@@ -7,7 +7,7 @@ import java.util.UUID
 
 class Coupon(
     val id: UUID = UUID(0,0),
-    val user: User,
+    val userId: UUID,
     val inventory: Inventory,
-    val createdDate: LocalDateTime
+    val createdAt: LocalDateTime
 )

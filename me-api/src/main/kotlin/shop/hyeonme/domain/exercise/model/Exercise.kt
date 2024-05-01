@@ -9,5 +9,5 @@ data class Exercise(
     val calorie: Int,
     val type: ExerciseType,
     val user: User,
-    val createdDate: LocalDateTime
+    val createdAt: LocalDateTime
 )
