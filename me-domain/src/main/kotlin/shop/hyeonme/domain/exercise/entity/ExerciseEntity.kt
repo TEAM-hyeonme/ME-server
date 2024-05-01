@@ -24,5 +24,5 @@ class ExerciseEntity(
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "saved_point_id", columnDefinition = "INT", nullable = false)
-    val savedPointEntity: SavedPointEntity
+    val savedPoint: SavedPointEntity
 ) : BaseLongEntity(id)
