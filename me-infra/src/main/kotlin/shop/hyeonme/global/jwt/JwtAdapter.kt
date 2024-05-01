@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.jsonwebtoken.*
 import org.springframework.stereotype.Component
 import shop.hyeonme.domain.auth.model.RefreshToken
-import shop.hyeonme.domain.auth.model.Role
+import shop.hyeonme.domain.auth.model.enums.Role
 import shop.hyeonme.domain.auth.spi.JwtPort
 import shop.hyeonme.domain.auth.spi.RefreshTokenPort
 import shop.hyeonme.domain.auth.usecase.data.res.TokenResponseData

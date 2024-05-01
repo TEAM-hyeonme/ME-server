@@ -1,7 +1,7 @@
 package shop.hyeonme.domain.user.entity
 
 import shop.hyeonme.common.base.BaseUUIDEntity
-import shop.hyeonme.domain.auth.model.Role
+import shop.hyeonme.domain.auth.model.enums.Role
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity

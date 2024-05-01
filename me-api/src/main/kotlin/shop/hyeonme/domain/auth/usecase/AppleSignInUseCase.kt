@@ -2,7 +2,7 @@ package shop.hyeonme.domain.auth.usecase
 
 import shop.hyeonme.common.annotation.UseCase
 import shop.hyeonme.common.spi.ApplePort
-import shop.hyeonme.domain.auth.model.Role
+import shop.hyeonme.domain.auth.model.enums.Role
 import shop.hyeonme.domain.auth.spi.JwtPort
 import shop.hyeonme.domain.auth.usecase.data.req.AppleSignInRequestData
 import shop.hyeonme.domain.auth.usecase.data.res.TokenResponseData

@@ -1,6 +1,6 @@
 package shop.hyeonme.domain.auth.usecase.data.res
 
-import shop.hyeonme.domain.auth.model.Role
+import shop.hyeonme.domain.auth.model.enums.Role
 import java.time.LocalDateTime
 
 data class TokenResponseData(

@@ -1,6 +1,6 @@
 package shop.hyeonme.domain.user.model
 
-import shop.hyeonme.domain.auth.model.Role
+import shop.hyeonme.domain.auth.model.enums.Role
 import java.util.*
 
 data class User(
