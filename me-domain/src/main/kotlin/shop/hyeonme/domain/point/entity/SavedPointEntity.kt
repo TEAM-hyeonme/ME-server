@@ -13,6 +13,6 @@ class SavedPointEntity(
     val amount: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "point_id", columnDefinition = "INT", nullable = false)
+    @JoinColumn(name = "point_id", columnDefinition = "BINARY(16)", nullable = false)
     val point: PointEntity
 ) : BaseLongEntity(id)
