@@ -10,5 +10,5 @@ data class Exercise(
     val calorie: Int,
     val type: ExerciseType,
     val userId: UUID,
-    val createdAt: LocalDateTime
+    val createdAt: LocalDateTime = LocalDateTime.now()
 )
