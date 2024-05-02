@@ -7,4 +7,6 @@ interface QueryUserService {
     fun existByEmail(email: String): Boolean
     fun findByEmail(email: String): User?
     fun findById(id: UUID): User
+    fun findCurrentUserId(): UUID
+    fun findCurrentUser(): User
 }
