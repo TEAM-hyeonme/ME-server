@@ -2,6 +2,7 @@ package shop.hyeonme.domain.point.entity
 
 import org.springframework.data.annotation.CreatedDate
 import shop.hyeonme.common.base.BaseLongEntity
+import shop.hyeonme.domain.exercise.entity.ExerciseEntity
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -17,6 +18,10 @@ class SavedPointEntity(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "point_id", columnDefinition = "BINARY(16)", nullable = false)
     val point: PointEntity,
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exercise_id", columnDefinition = "BIGINT", nullable = false)
+    val exercise: ExerciseEntity,
 
     @CreatedDate
     @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")

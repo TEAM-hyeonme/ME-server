@@ -10,6 +10,5 @@ data class Exercise(
     val calorie: Int,
     val type: ExerciseType,
     val userId: UUID,
-    val savedPoint: SavedPoint,
     val createdAt: LocalDateTime
 )

@@ -24,10 +24,6 @@ class ExerciseEntity(
     @Column(name = "user_id", columnDefinition = "BINARY(16)")
     val userId: UUID,
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "saved_point_id", columnDefinition = "INT", nullable = false)
-    val savedPoint: SavedPointEntity,
-
     @CreatedDate
     @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")
     var createdAt: LocalDateTime = LocalDateTime.now()
