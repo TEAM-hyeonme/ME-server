@@ -1,7 +1,6 @@
 package shop.hyeonme.domain.exercise.model
 
 import shop.hyeonme.domain.exercise.model.enums.ExerciseType
-import shop.hyeonme.domain.point.model.SavedPoint
 import java.time.LocalDateTime
 import java.util.UUID
 
