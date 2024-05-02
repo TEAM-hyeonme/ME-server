@@ -1,3 +1,3 @@
 package shop.hyeonme.domain.exercise.spi
 
-interface ExercisePort : CommandExercisePort
+interface ExercisePort : CommandExercisePort, QueryExercisePort
