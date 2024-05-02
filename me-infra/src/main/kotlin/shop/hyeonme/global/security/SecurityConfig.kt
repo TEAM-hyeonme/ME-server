@@ -45,6 +45,9 @@ class SecurityConfig(
             .mvcMatchers(HttpMethod.POST, "/auth/apple").permitAll()
             .mvcMatchers(HttpMethod.PATCH, "/auth").permitAll()
 
+            // exercise
+            .mvcMatchers(HttpMethod.PUT, "/exercise").authenticated()
+
             .anyRequest().authenticated()
             .and()
 

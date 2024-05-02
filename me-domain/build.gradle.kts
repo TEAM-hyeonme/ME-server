@@ -17,6 +17,7 @@ dependencies {
     runtimeOnly ("com.mysql:mysql-connector-j")
 
     implementation("com.querydsl:querydsl-jpa:5.0.0")
+    implementation("com.querydsl:querydsl-apt:5.0.0")
     kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
 
     implementation(project(":me-api"))

@@ -2,7 +2,7 @@ package shop.hyeonme.domain.point.model
 
 import java.util.*
 
-data class Point(
+data class TotalPoint(
     val id: Long = 0L,
     val userId: UUID
 )
