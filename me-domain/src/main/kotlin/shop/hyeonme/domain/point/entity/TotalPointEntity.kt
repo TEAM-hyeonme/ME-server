@@ -7,11 +7,11 @@ import javax.persistence.Entity
 import javax.persistence.Table
 
 @Entity
-@Table(name = "point")
-class PointEntity(
+@Table(name = "total_point")
+class TotalPointEntity(
     @get:JvmName("getIdentifier")
     override var id: Long,
 
-    @Column(columnDefinition = "user_id", nullable = false)
+    @Column(columnDefinition = "BINARY(16)", nullable = false)
     val userId: UUID
 ) : BaseLongEntity(id)

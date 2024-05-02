@@ -2,8 +2,7 @@ package shop.hyeonme.domain.point.entity
 
 import org.springframework.data.annotation.CreatedDate
 import shop.hyeonme.common.base.BaseLongEntity
-import shop.hyeonme.domain.exercise.entity.ExerciseEntity
-import shop.hyeonme.domain.order.entity.OrderEntity
+import shop.hyeonme.domain.purchase.entity.PurchaseEntity
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -13,16 +12,16 @@ class UsedPointEntity(
     @get:JvmName("getIdentifier")
     override var id: Long,
 
-    @Column(columnDefinition = "UNSIGNED INT", nullable = false)
+    @Column(columnDefinition = "INT UNSIGNED", nullable = false)
     val amount: Int,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "point_id", columnDefinition = "BINARY(16)", nullable = false)
-    val point: PointEntity,
+    @JoinColumn(name = "total_point_id", columnDefinition = "BIGINT", nullable = false)
+    val totalPoint: TotalPointEntity,
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", columnDefinition = "BIGINT", nullable = false)
-    val order: OrderEntity,
+    @JoinColumn(name = "purchase_id", columnDefinition = "BIGINT", nullable = false)
+    val purchase: PurchaseEntity,
 
     @CreatedDate
     @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")

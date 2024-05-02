@@ -15,7 +15,7 @@ class GifticonEntity(
     @Column(columnDefinition = "VARCHAR(50)", nullable = false)
     val name: String,
 
-    @Column(columnDefinition = "UNSIGNED MEDIUMINT", nullable = false)
+    @Column(columnDefinition = "MEDIUMINT UNSIGNED", nullable = false)
     val point: Int,
 
     @Column(columnDefinition = "TEXT", nullable = false)

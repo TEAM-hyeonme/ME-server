@@ -1,17 +1,17 @@
-package shop.hyeonme.domain.order.mapper
+package shop.hyeonme.domain.purchase.mapper
 
 import shop.hyeonme.domain.coupon.mapper.toEntity
 import shop.hyeonme.domain.coupon.mapper.toModel
-import shop.hyeonme.domain.order.entity.OrderEntity
-import shop.hyeonme.domain.order.model.Order
+import shop.hyeonme.domain.purchase.entity.PurchaseEntity
+import shop.hyeonme.domain.purchase.model.Purchase
 
-fun Order.toEntity() = OrderEntity(
+fun Purchase.toEntity() = PurchaseEntity(
     id = id,
     coupon = coupon.toEntity(),
     createdAt = createdAt
 )
 
-fun OrderEntity.toModel() = Order(
+fun PurchaseEntity.toModel() = Purchase(
     id = id,
     coupon = coupon.toModel(),
     createdAt = createdAt
