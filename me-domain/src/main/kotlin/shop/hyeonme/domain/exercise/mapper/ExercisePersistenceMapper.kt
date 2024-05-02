@@ -18,3 +18,7 @@ fun ExerciseEntity.toModel() = Exercise(
     userId = userId,
     createdAt = createdAt
 )
+
+fun List<Exercise>.toEntities() = map { it.toEntity() }
+
+fun List<ExerciseEntity>.toModels() = map { it.toModel() }
