@@ -1,6 +1,7 @@
 package shop.hyeonme.domain.point.model
 
 import shop.hyeonme.domain.purchase.model.Purchase
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class UsedPoint(
@@ -8,5 +9,5 @@ data class UsedPoint(
     val amount: Int,
     val totalPoint: TotalPoint,
     val purchase: Purchase,
-    val createdAt: LocalDateTime
+    val createdAt: LocalDate
 )

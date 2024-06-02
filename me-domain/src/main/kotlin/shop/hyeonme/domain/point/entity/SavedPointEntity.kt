@@ -3,7 +3,7 @@ package shop.hyeonme.domain.point.entity
 import org.springframework.data.annotation.CreatedDate
 import shop.hyeonme.common.base.BaseLongEntity
 import shop.hyeonme.domain.exercise.entity.ExerciseEntity
-import java.time.LocalDateTime
+import java.time.LocalDate
 import javax.persistence.*
 
 @Entity
@@ -25,6 +25,6 @@ class SavedPointEntity(
 
     @CreatedDate
     @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")
-    var createdAt: LocalDateTime = LocalDateTime.now()
+    var createdAt: LocalDate = LocalDate.now()
 
 ) : BaseLongEntity(id)
