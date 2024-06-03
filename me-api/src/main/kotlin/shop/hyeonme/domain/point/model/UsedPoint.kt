@@ -2,12 +2,12 @@ package shop.hyeonme.domain.point.model
 
 import shop.hyeonme.domain.purchase.model.Purchase
 import java.time.LocalDate
-import java.time.LocalDateTime
+import java.util.*
 
 data class UsedPoint(
     val id: Long = 0L,
     val amount: Int,
-    val totalPoint: TotalPoint,
+    val userId: UUID,
     val purchase: Purchase,
-    val createdAt: LocalDate
+    val createdAt: LocalDate = LocalDate.now()
 )
