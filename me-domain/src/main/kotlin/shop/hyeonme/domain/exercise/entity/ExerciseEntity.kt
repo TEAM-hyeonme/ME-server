@@ -4,7 +4,7 @@ import org.springframework.data.annotation.CreatedDate
 import shop.hyeonme.common.base.BaseLongEntity
 import shop.hyeonme.domain.exercise.model.enums.ExerciseType
 import java.time.LocalDate
-import java.util.UUID
+import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -24,6 +24,6 @@ class ExerciseEntity(
     val userId: UUID,
 
     @CreatedDate
-    @Column(nullable = false, updatable = false, columnDefinition = "DATE(6)")
+    @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")
     var createdAt: LocalDate = LocalDate.now()
 ) : BaseLongEntity(id)
