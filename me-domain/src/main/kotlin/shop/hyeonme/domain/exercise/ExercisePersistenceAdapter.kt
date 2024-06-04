@@ -9,7 +9,7 @@ import shop.hyeonme.domain.exercise.model.Exercise
 import shop.hyeonme.domain.exercise.repository.ExerciseRepository
 import shop.hyeonme.domain.exercise.spi.ExercisePort
 import java.time.LocalDate
-import java.util.UUID
+import java.util.*
 
 @Component
 class ExercisePersistenceAdapter(
@@ -18,6 +18,19 @@ class ExercisePersistenceAdapter(
 ) : ExercisePort {
     override fun saveExercises(exercises: List<Exercise>): List<Exercise> =
         exerciseRepository.saveAll(exercises.toEntities()).toList().toModels()
+
+    override fun findTopExercisesByDate(userId: UUID, date: LocalDate): List<Exercise> =
+        queryFactory.selectFrom(exerciseEntity)
+            .where(
+                exerciseEntity.userId.eq(userId),
+                exerciseEntity.createdAt.eq(LocalDate.now())
+            )
+            .orderBy(
+                exerciseEntity.calorie.desc()
+            )
+            .limit(6)
+            .fetch()
+            .toModels()
 
     override fun findUserExercisesByCurrentDate(userId: UUID): List<Exercise> =
         queryFactory.selectFrom(exerciseEntity)

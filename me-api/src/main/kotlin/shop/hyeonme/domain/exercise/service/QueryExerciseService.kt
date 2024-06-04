@@ -5,4 +5,5 @@ import java.util.*
 
 interface QueryExerciseService {
     fun findExerciseByCurrentDate(userId: UUID): List<Exercise>
+    fun findTopExercisesByCurrentDate(userId: UUID): List<Exercise>
 }
