@@ -23,7 +23,7 @@ class ExercisePersistenceAdapter(
         queryFactory.selectFrom(exerciseEntity)
             .where(
                 exerciseEntity.userId.eq(userId),
-                exerciseEntity.createdAt.eq(LocalDate.now())
+                exerciseEntity.createdAt.eq(date)
             )
             .orderBy(
                 exerciseEntity.calorie.desc()
@@ -32,7 +32,7 @@ class ExercisePersistenceAdapter(
             .fetch()
             .toModels()
 
-    override fun findUserExercisesByCurrentDate(userId: UUID): List<Exercise> =
+    override fun findExercisesByCurrentDate(userId: UUID, date: LocalDate): List<Exercise> =
         queryFactory.selectFrom(exerciseEntity)
             .where(
                 exerciseEntity.userId.eq(userId),

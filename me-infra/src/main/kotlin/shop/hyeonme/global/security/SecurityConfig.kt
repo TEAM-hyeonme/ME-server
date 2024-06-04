@@ -47,6 +47,7 @@ class SecurityConfig(
 
             // exercise
             .mvcMatchers(HttpMethod.PUT, "/exercise").authenticated()
+            .mvcMatchers(HttpMethod.GET, "/exercise").authenticated()
             .mvcMatchers(HttpMethod.GET, "/exercise/top").authenticated()
 
             .anyRequest().authenticated()

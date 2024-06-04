@@ -6,5 +6,5 @@ import java.util.*
 
 interface QueryExercisePort {
     fun findTopExercisesByDate(userId: UUID, date: LocalDate): List<Exercise>
-    fun findUserExercisesByCurrentDate(userId: UUID): List<Exercise>
+    fun findExercisesByCurrentDate(userId: UUID, date: LocalDate): List<Exercise>
 }
