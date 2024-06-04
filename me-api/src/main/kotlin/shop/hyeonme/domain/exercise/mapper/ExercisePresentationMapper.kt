@@ -3,10 +3,12 @@ package shop.hyeonme.domain.exercise.mapper
 import shop.hyeonme.domain.exercise.presentation.web.req.UpdateExercisesWebRequest
 import shop.hyeonme.domain.exercise.presentation.web.req.UpdateExercisesWebRequest.UpdateExerciseWebRequest
 import shop.hyeonme.domain.exercise.presentation.web.res.QueryExerciseWebResponse
+import shop.hyeonme.domain.exercise.presentation.web.res.QueryExercisesWebResponse
 import shop.hyeonme.domain.exercise.presentation.web.res.QueryTopExercisesWebResponse
 import shop.hyeonme.domain.exercise.usecase.data.req.UpdateExercisesRequestData
 import shop.hyeonme.domain.exercise.usecase.data.req.UpdateExercisesRequestData.UpdateExerciseRequestData
 import shop.hyeonme.domain.exercise.usecase.data.res.QueryExerciseResponseData
+import shop.hyeonme.domain.exercise.usecase.data.res.QueryExercisesResponseData
 import shop.hyeonme.domain.exercise.usecase.data.res.QueryTopExercisesResponseData
 
 fun UpdateExercisesWebRequest.toRequest() = UpdateExercisesRequestData(
@@ -24,5 +26,10 @@ fun QueryExerciseResponseData.toResponse() = QueryExerciseWebResponse(
 )
 
 fun QueryTopExercisesResponseData.toResponse() = QueryTopExercisesWebResponse(
+    exercises = exercises.map { it.toResponse() }
+)
+
+fun QueryExercisesResponseData.toResponse() = QueryExercisesWebResponse(
+    point = point,
     exercises = exercises.map { it.toResponse() }
 )
