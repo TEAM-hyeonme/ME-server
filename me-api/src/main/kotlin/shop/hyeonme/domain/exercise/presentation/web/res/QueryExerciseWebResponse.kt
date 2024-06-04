@@ -4,7 +4,7 @@ import shop.hyeonme.domain.exercise.model.enums.ExerciseType
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
 
-data class QueryExercisesWebResponse(
+data class QueryExerciseWebResponse(
     @Enumerated(EnumType.STRING)
     val exerciseType: ExerciseType,
 

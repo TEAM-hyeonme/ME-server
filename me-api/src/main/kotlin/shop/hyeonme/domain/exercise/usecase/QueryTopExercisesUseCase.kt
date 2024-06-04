@@ -2,7 +2,7 @@ package shop.hyeonme.domain.exercise.usecase
 
 import shop.hyeonme.common.annotation.ReadOnlyUseCase
 import shop.hyeonme.domain.exercise.service.ExerciseService
-import shop.hyeonme.domain.exercise.usecase.data.res.QueryExercisesResponseData
+import shop.hyeonme.domain.exercise.usecase.data.res.QueryExerciseResponseData
 import shop.hyeonme.domain.exercise.usecase.data.res.QueryTopExercisesResponseData
 import shop.hyeonme.domain.user.service.UserService
 
@@ -15,7 +15,7 @@ class QueryTopExercisesUseCase(
         val userId = userService.findCurrentUserId()
         val exercises = exerciseService.findTopExercisesByCurrentDate(userId)
             .map {
-                QueryExercisesResponseData(
+                QueryExerciseResponseData(
                     exerciseType = it.type,
                     calorie = it.calorie
                 )
