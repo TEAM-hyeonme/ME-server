@@ -2,7 +2,6 @@ package shop.hyeonme.domain.point
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Component
-import shop.hyeonme.domain.exercise.entity.QExerciseEntity.exerciseEntity
 import shop.hyeonme.domain.point.entity.QSavedPointEntity.savedPointEntity
 import shop.hyeonme.domain.point.mapper.toEntity
 import shop.hyeonme.domain.point.mapper.toModel
@@ -16,8 +15,7 @@ import java.util.*
 @Component
 class PointPersistenceAdapter(
     private val queryFactory: JPAQueryFactory,
-    private val savedPointRepository: SavedPointRepository,
-    private val usedPointRepository: UsedPointRepository
+    private val savedPointRepository: SavedPointRepository
 ) : PointPort {
     override fun savePoint(savedPoint: SavedPoint): SavedPoint =
         savedPointRepository.save(savedPoint.toEntity()).toModel()
@@ -32,8 +30,8 @@ class PointPersistenceAdapter(
             )
             .from(savedPointEntity)
             .where(
-                exerciseEntity.userId.eq(userId),
-                exerciseEntity.createdAt.eq(date)
+                savedPointEntity.userId.eq(userId),
+                savedPointEntity.createdAt.eq(date)
             )
             .fetchOne() ?: 0
 

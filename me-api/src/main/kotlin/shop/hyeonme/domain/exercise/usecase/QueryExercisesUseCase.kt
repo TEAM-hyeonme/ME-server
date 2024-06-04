@@ -23,7 +23,7 @@ class QueryExercisesUseCase(
                     exerciseType = it.type,
                     calorie = it.calorie
                 )
-            }
+            }.sortedByDescending { it.calorie }
 
         return QueryExercisesResponseData(
             point = point,
