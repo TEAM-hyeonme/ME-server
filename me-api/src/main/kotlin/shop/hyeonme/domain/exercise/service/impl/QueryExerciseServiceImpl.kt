@@ -12,8 +12,8 @@ class QueryExerciseServiceImpl(
     private val exercisePort: ExercisePort
 ) : QueryExerciseService {
 
-    override fun findExerciseByCurrentDate(userId: UUID): List<Exercise> =
-        exercisePort.findUserExercisesByCurrentDate(userId)
+    override fun findExercisesByCurrentDate(userId: UUID): List<Exercise> =
+        exercisePort.findExercisesByCurrentDate(userId, LocalDate.now())
 
     override fun findTopExercisesByCurrentDate(userId: UUID): List<Exercise> =
         exercisePort.findTopExercisesByDate(userId, LocalDate.now())

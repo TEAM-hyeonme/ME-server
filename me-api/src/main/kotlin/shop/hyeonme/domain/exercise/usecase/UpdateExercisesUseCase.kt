@@ -19,7 +19,7 @@ class UpdateExercisesUseCase(
     fun execute(request: UpdateExercisesRequestData) {
         val userId = userService.findCurrentUserId()
 
-        val currentDateExercises = exerciseService.findExerciseByCurrentDate(userId)
+        val currentDateExercises = exerciseService.findExercisesByCurrentDate(userId)
 
         val exercises = request.exercises.map { exercise ->
             currentDateExercises.find { it.type == exercise.exerciseType }
