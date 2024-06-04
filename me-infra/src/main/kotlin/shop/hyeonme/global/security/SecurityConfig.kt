@@ -2,12 +2,12 @@ package shop.hyeonme.global.security
 
 import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpMethod
-import org.springframework.web.cors.CorsUtils
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.util.matcher.RequestMatcher
+import org.springframework.web.cors.CorsUtils
 import shop.hyeonme.global.config.FilterConfig
 import shop.hyeonme.global.jwt.JwtTokenParser
 import shop.hyeonme.global.security.handler.CustomAccessDeniedHandler
@@ -47,6 +47,7 @@ class SecurityConfig(
 
             // exercise
             .mvcMatchers(HttpMethod.PUT, "/exercise").authenticated()
+            .mvcMatchers(HttpMethod.GET, "/exercise/top").authenticated()
 
             .anyRequest().authenticated()
             .and()
