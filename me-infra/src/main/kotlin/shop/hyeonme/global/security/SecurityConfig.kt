@@ -45,10 +45,13 @@ class SecurityConfig(
             .mvcMatchers(HttpMethod.POST, "/auth/apple").permitAll()
             .mvcMatchers(HttpMethod.PATCH, "/auth").permitAll()
 
-            // exercise
+            // Exercise
             .mvcMatchers(HttpMethod.PUT, "/exercise").authenticated()
             .mvcMatchers(HttpMethod.GET, "/exercise").authenticated()
             .mvcMatchers(HttpMethod.GET, "/exercise/top").authenticated()
+
+            // User
+            .mvcMatchers(HttpMethod.GET, "/user").authenticated()
 
             .anyRequest().authenticated()
             .and()
