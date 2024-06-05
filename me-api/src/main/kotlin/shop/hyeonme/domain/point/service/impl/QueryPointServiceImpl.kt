@@ -17,4 +17,7 @@ class QueryPointServiceImpl(
     override fun countSavedPointByCurrentDate(userId: UUID): Int =
         pointPort.countSavedPointByDate(userId, LocalDate.now())
 
+    override fun countPoint(userId: UUID): Int =
+        pointPort.countPoint(userId)
+
 }
