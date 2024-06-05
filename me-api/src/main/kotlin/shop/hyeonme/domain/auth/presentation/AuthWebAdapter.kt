@@ -2,6 +2,7 @@ package shop.hyeonme.domain.auth.presentation
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -14,6 +15,7 @@ import shop.hyeonme.domain.auth.presentation.web.res.GetAppleSignInUrlWebRespons
 import shop.hyeonme.domain.auth.presentation.web.res.TokenWebResponse
 import shop.hyeonme.domain.auth.usecase.AppleSignInUseCase
 import shop.hyeonme.domain.auth.usecase.GetAppleSignInUrlUseCase
+import shop.hyeonme.domain.auth.usecase.LogoutUseCase
 import shop.hyeonme.domain.auth.usecase.ReIssueTokenUseCase
 import javax.validation.Valid
 
@@ -21,7 +23,8 @@ import javax.validation.Valid
 class AuthWebAdapter(
     private val getAppleSignInUrlUseCase: GetAppleSignInUrlUseCase,
     private val appleSignInUseCase: AppleSignInUseCase,
-    private val reIssueTokenUseCase: ReIssueTokenUseCase
+    private val reIssueTokenUseCase: ReIssueTokenUseCase,
+    private val logoutUseCase: LogoutUseCase
 ) {
     @GetMapping("/apple")
     fun getAppleSignInUrl(): ResponseEntity<GetAppleSignInUrlWebResponse> =
@@ -34,9 +37,13 @@ class AuthWebAdapter(
             .let { ResponseEntity.status(HttpStatus.OK).body(it.toResponse()) }
 
     @PatchMapping
-    fun reIssueToken(@Valid @RequestHeader("Refresh-Token") header: String): ResponseEntity<TokenWebResponse> =
-        reIssueTokenUseCase.execute(header)
+    fun reIssueToken(@RequestHeader("Refresh-Token") token: String): ResponseEntity<TokenWebResponse> =
+        reIssueTokenUseCase.execute(token)
             .let { ResponseEntity.status(HttpStatus.OK).body(it.toResponse()) }
 
+    @DeleteMapping
+    fun logout(@RequestHeader("Refresh-Token") token: String): ResponseEntity<Unit> =
+        logoutUseCase.execute(token)
+            .let { ResponseEntity.status(HttpStatus.NO_CONTENT).build() }
 
 }
