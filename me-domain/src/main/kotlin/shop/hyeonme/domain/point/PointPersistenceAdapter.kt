@@ -41,15 +41,22 @@ class PointPersistenceAdapter(
             .select(
                 QCountAllPointProjectionData(
                     savedPointEntity.amount.sum(),
-                    usedPointEntity.amount.sum()
+                    queryUsedPoint(userId)
                 )
             )
-            .from(savedPointEntity, usedPointEntity)
+            .from(savedPointEntity)
             .where(
-                savedPointEntity.userId.eq(userId),
-                usedPointEntity.userId.eq(userId)
+                savedPointEntity.userId.eq(userId)
             )
             .fetchOne()
             ?.run { savedPoint - usedPoint } ?: 0
+
+    private fun queryUsedPoint(userId: UUID) =
+        queryFactory
+            .select(usedPointEntity.amount.sum())
+            .from(usedPointEntity)
+            .where(
+                usedPointEntity.userId.eq(userId)
+            )
 
 }
