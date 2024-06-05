@@ -6,4 +6,5 @@ import java.util.*
 interface QueryPointService {
     fun findSavedPointByCurrentDate(userId: UUID): SavedPoint?
     fun countSavedPointByCurrentDate(userId: UUID): Int
+    fun countPoint(userId: UUID): Int
 }
