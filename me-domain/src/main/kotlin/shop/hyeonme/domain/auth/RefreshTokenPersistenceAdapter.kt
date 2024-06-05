@@ -6,7 +6,6 @@ import shop.hyeonme.domain.auth.mapper.toModel
 import shop.hyeonme.domain.auth.model.RefreshToken
 import shop.hyeonme.domain.auth.repository.RefreshTokenRepository
 import shop.hyeonme.domain.auth.spi.RefreshTokenPort
-import java.util.*
 
 @Component
 class RefreshTokenPersistenceAdapter(
@@ -17,10 +16,6 @@ class RefreshTokenPersistenceAdapter(
 
     override fun deleteRefreshToken(refreshToken: RefreshToken) =
         refreshTokenRepository.delete(refreshToken.toEntity())
-
-    override fun deleteRefreshTokenByUserId(userId: UUID) {
-        refreshTokenRepository.deleteByUserId(userId)
-    }
 
     override fun findRefreshTokenByToken(token: String) =
         refreshTokenRepository.findByToken(token)?.toModel()
