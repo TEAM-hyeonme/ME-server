@@ -12,9 +12,6 @@ class InventoryEntity(
     @get:JvmName("getIdentifier")
     override var id: UUID,
 
-    @Column(columnDefinition = "DATETIME(6)", nullable = false)
-    val expiredAt: LocalDateTime,
-
     @Column(columnDefinition = "VARCHAR(500)", nullable = false)
     val barcodeUrl: String,
 

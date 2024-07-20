@@ -20,6 +20,9 @@ class CouponEntity(
     @JoinColumn(name = "inventory_id", columnDefinition = "BINARY(16)", nullable = false)
     val inventory: InventoryEntity,
 
+    @Column(columnDefinition = "DATETIME(6)", nullable = false)
+    val expiredAt: LocalDateTime,
+
     @CreatedDate
     @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")
     var createdAt: LocalDateTime = LocalDateTime.now()
