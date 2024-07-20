@@ -1,5 +1,6 @@
 package shop.hyeonme.domain.inventory.entity
 
+import org.springframework.data.annotation.CreatedDate
 import shop.hyeonme.common.base.BaseUUIDEntity
 import shop.hyeonme.domain.gifticon.entity.GifticonEntity
 import java.time.LocalDateTime
@@ -11,6 +12,9 @@ import javax.persistence.*
 class InventoryEntity(
     @get:JvmName("getIdentifier")
     override var id: UUID,
+
+    @Column(columnDefinition = "DATETIME(6)", nullable = false)
+    var createdAt: LocalDateTime,
 
     @Column(columnDefinition = "DATETIME(6)", nullable = false)
     val expiredAt: LocalDateTime,
