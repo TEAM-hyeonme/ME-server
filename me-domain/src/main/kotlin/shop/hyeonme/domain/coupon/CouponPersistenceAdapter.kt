@@ -34,12 +34,13 @@ class CouponPersistenceAdapter(
             .fetch()
             .toModels()
 
-    override fun findCouponBarcodeById(id: UUID): String =
+    override fun findUserCouponBarcodeById(id: UUID, userId: UUID): String? =
         queryFactory.select(
             inventory.barcodeUrl
         ).from(coupon)
             .where(
                 coupon.id.eq(id),
+                coupon.userId.eq(userId),
                 inventory.eq(coupon.inventory)
             )
             .fetchFirst()

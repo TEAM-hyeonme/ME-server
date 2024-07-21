@@ -5,5 +5,5 @@ import java.util.*
 
 interface QueryCouponPort {
     fun findAllCouponsByUserId(userId: UUID): List<CouponInfo>
-    fun findCouponBarcodeById(id: UUID): String
+    fun findUserCouponBarcodeById(id: UUID, userId: UUID): String?
 }
