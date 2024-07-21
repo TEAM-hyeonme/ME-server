@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${DB_HOST:localhost}:3306/${DB_NAME:me}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:}
+    password: ${DB_PASSWORD:1234}
 
   jpa:
     show-sql: true
@@ -21,14 +21,8 @@ apple:
   client-id: ${APPLE_CLIENT_ID:}
   redirect-url: ${APPLE_REDIRECT_URL:}
   auth-key: ${APPLE_AUTH_KEY:}
+
 jwt:
   access-exp: ${JWT_ACCESS_EXP:3600}
   refresh-exp: ${JWT_REFRESH_EXP:108000}
   secret-key: ${JWT_SECRET_KEY:mesecretkeyhaveagooddaybabymesecretkeyhaveagooddaybabymesecretkeyhaveagooddaybabymesecretkeyhaveagooddaybaby}
-
-server:
-  ssl:
-    enabled: true
-    key-store: keystore.p12
-    key-store-password: changeit
-    key-store-type: PKCS12
