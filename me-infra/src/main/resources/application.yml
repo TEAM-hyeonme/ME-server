@@ -26,3 +26,11 @@ jwt:
   access-exp: ${JWT_ACCESS_EXP:3600}
   refresh-exp: ${JWT_REFRESH_EXP:108000}
   secret-key: ${JWT_SECRET_KEY:mesecretkeyhaveagooddaybabymesecretkeyhaveagooddaybabymesecretkeyhaveagooddaybabymesecretkeyhaveagooddaybaby}
+
+server:
+  ssl:
+    enabled: true
+    key-store: local-test.key
+    key-store-password: 123456
+    key-store-type: PKCS12
+    key-alias: bns-ssl
