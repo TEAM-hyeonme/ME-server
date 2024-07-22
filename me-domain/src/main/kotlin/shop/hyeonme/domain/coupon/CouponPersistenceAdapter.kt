@@ -25,10 +25,10 @@ class CouponPersistenceAdapter(
                 gifticon
             )
         ).from(coupon)
+            .innerJoin(coupon.inventory, inventory)
+            .innerJoin(inventory.gifticon, gifticon)
             .where(
-                coupon.userId.eq(userId),
-                coupon.inventory.eq(inventory),
-                inventory.eq(inventory)
+                coupon.userId.eq(userId)
             )
             .orderBy(inventory.expiredAt.desc())
             .fetch()
@@ -38,10 +38,10 @@ class CouponPersistenceAdapter(
         queryFactory.select(
             inventory.barcodeUrl
         ).from(coupon)
+            .innerJoin(coupon.inventory, inventory)
             .where(
                 coupon.id.eq(id),
-                coupon.userId.eq(userId),
-                inventory.eq(coupon.inventory)
+                coupon.userId.eq(userId)
             )
             .fetchFirst()
 }
