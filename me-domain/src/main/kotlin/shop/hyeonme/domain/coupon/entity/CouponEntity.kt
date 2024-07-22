@@ -16,7 +16,7 @@ class CouponEntity(
     @Column(columnDefinition = "BINARY(16)", nullable = false)
     val userId: UUID,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory_id", columnDefinition = "BINARY(16)", nullable = false)
     val inventory: InventoryEntity,
 

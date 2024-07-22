@@ -6,6 +6,7 @@ import java.util.UUID
 
 data class Inventory(
     val id: UUID = UUID(0,0),
+    val createdAt: LocalDateTime,
     val expiredAt: LocalDateTime,
     val barcodeUrl: String,
     val gifticon: Gifticon

@@ -7,6 +7,7 @@ import shop.hyeonme.domain.inventory.model.Inventory
 
 fun Inventory.toDomain() = InventoryEntity(
     id = id,
+    createdAt = createdAt,
     expiredAt = expiredAt,
     barcodeUrl = barcodeUrl,
     gifticon = gifticon.toDomain()
@@ -14,6 +15,7 @@ fun Inventory.toDomain() = InventoryEntity(
 
 fun InventoryEntity.toModel() = Inventory(
     id = id,
+    createdAt = createdAt,
     expiredAt = expiredAt,
     barcodeUrl = barcodeUrl,
     gifticon = gifticon.toModel()
