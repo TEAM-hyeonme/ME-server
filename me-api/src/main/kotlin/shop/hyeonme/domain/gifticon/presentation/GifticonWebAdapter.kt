@@ -2,6 +2,8 @@ package shop.hyeonme.domain.gifticon.presentation
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import shop.hyeonme.common.annotation.WebAdapter
@@ -9,13 +11,31 @@ import shop.hyeonme.domain.gifticon.mapper.toRequest
 import shop.hyeonme.domain.gifticon.mapper.toResponse
 import shop.hyeonme.domain.gifticon.presentation.web.req.CreateGifticonWebRequest
 import shop.hyeonme.domain.gifticon.presentation.web.res.CreateGifticonWebResponse
+import shop.hyeonme.domain.gifticon.presentation.web.res.QueryGifticonDetailsWebResponse
+import shop.hyeonme.domain.gifticon.presentation.web.res.QueryGifticonWebResponse
+import shop.hyeonme.domain.gifticon.presentation.web.res.QueryGifticonsWebResponse
 import shop.hyeonme.domain.gifticon.usecase.CreateGifticonUseCase
+import shop.hyeonme.domain.gifticon.usecase.QueryGifticonDetailsUseCase
+import shop.hyeonme.domain.gifticon.usecase.QueryGifticonsUseCase
+import java.util.*
 import javax.validation.Valid
 
 @WebAdapter("/gifticon")
 class GifticonWebAdapter(
     private val createGifticonUseCase: CreateGifticonUseCase,
+    private val queryGifticonsUseCase: QueryGifticonsUseCase,
+    private val queryGifticonDetailsUseCase: QueryGifticonDetailsUseCase
 ) {
+    @GetMapping
+    fun queryGifticons(): ResponseEntity<QueryGifticonsWebResponse> =
+        queryGifticonsUseCase.execute()
+           .let { ResponseEntity.ok(it.toResponse()) }
+
+    @GetMapping("/{id}")
+    fun queryGifticonDetails(@PathVariable id: UUID): ResponseEntity<QueryGifticonDetailsWebResponse> =
+        queryGifticonDetailsUseCase.execute(id)
+            .let { ResponseEntity.ok(it.toResponse()) }
+
     @PostMapping("/admin")
     fun createGifticon(@RequestBody @Valid request: CreateGifticonWebRequest): ResponseEntity<CreateGifticonWebResponse> =
         createGifticonUseCase.execute(request.toRequest())
