@@ -41,6 +41,12 @@ class GifticonPersistenceAdapter(
                 coupon.isNull
             )
             .groupBy(
+                gifticon.id,
+                gifticon.name,
+                gifticon.point,
+                gifticon.notice,
+                gifticon.brand,
+                gifticon.profileUrl,
                 inventory
             )
             .orderBy(
@@ -68,6 +74,12 @@ class GifticonPersistenceAdapter(
                 coupon.isNull
             )
             .groupBy(
+                gifticon.id,
+                gifticon.name,
+                gifticon.point,
+                gifticon.notice,
+                gifticon.brand,
+                gifticon.profileUrl,
                 inventory
             )
             .fetchFirst()
