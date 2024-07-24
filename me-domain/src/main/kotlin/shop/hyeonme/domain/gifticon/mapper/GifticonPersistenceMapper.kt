@@ -3,7 +3,7 @@ package shop.hyeonme.domain.gifticon.mapper
 import shop.hyeonme.domain.gifticon.entity.GifticonEntity
 import shop.hyeonme.domain.gifticon.model.Gifticon
 
-fun Gifticon.toDomain() = GifticonEntity(
+fun Gifticon.toEntity() = GifticonEntity(
     id = id,
     name = name,
     point = point,
