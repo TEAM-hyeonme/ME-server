@@ -23,13 +23,14 @@ fun GifticonEntity.toModel() = Gifticon(
     profileUrl = profileUrl
 )
 
-fun GifticonInfoProjectionData.toModel() = Gifticon(
+fun GifticonInfoProjectionData.toModel() = GifticonInfo(
     id = id,
     name = name,
     point = point,
     notice = notice,
     brand = brand,
-    profileUrl = profileUrl
+    profileUrl = profileUrl,
+    inventory = inventory
 )
 
 fun List<GifticonInfoProjectionData>.toModels() = map(GifticonInfoProjectionData::toModel)
