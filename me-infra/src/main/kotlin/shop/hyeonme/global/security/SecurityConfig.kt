@@ -54,15 +54,6 @@ class SecurityConfig(
             // User
             .mvcMatchers(HttpMethod.GET, "/user").authenticated()
 
-            // Coupon
-            .mvcMatchers(HttpMethod.GET, "/coupon").authenticated()
-            .mvcMatchers(HttpMethod.GET, "/coupon/{id}").authenticated()
-
-            // Gifticon
-            .mvcMatchers(HttpMethod.GET, "/gifticon").authenticated()
-            .mvcMatchers(HttpMethod.GET, "/gifticon/{id}").authenticated()
-            .mvcMatchers(HttpMethod.POST, "/gifticon/admin").hasRole(ADMIN)
-
             .anyRequest().authenticated()
             .and()
 

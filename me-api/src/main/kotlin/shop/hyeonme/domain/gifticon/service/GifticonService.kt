@@ -4,7 +4,5 @@ import shop.hyeonme.common.annotation.FacadeService
 
 @FacadeService
 class GifticonService(
-    commandGifticonService: CommandGifticonService,
-    queryGifticonService: QueryGifticonService
-) : CommandGifticonService by commandGifticonService,
-    QueryGifticonService by queryGifticonService
+    commandGifticonService: CommandGifticonService
+) : CommandGifticonService by commandGifticonService
