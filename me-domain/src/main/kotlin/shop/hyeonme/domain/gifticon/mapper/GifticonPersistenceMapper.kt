@@ -2,6 +2,8 @@ package shop.hyeonme.domain.gifticon.mapper
 
 import shop.hyeonme.domain.gifticon.entity.GifticonEntity
 import shop.hyeonme.domain.gifticon.model.Gifticon
+import shop.hyeonme.domain.gifticon.model.GifticonInfo
+import shop.hyeonme.domain.gifticon.projection.GifticonInfoProjectionData
 
 fun Gifticon.toEntity() = GifticonEntity(
     id = id,
@@ -20,3 +22,15 @@ fun GifticonEntity.toModel() = Gifticon(
     brand = brand,
     profileUrl = profileUrl
 )
+
+fun GifticonInfoProjectionData.toModel() = GifticonInfo(
+    id = id,
+    name = name,
+    point = point,
+    notice = notice,
+    brand = brand,
+    profileUrl = profileUrl,
+    inventory = inventory
+)
+
+fun List<GifticonInfoProjectionData>.toModels() = map(GifticonInfoProjectionData::toModel)

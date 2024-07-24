@@ -1,3 +1,3 @@
 package shop.hyeonme.domain.gifticon.spi
 
-interface GifticonPort : CommandGifticonPort
+interface GifticonPort : CommandGifticonPort, QueryGifticonPort
