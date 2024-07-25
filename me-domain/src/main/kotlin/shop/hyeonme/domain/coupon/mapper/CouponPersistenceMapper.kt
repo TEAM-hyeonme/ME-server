@@ -5,13 +5,13 @@ import shop.hyeonme.domain.coupon.model.Coupon
 import shop.hyeonme.domain.coupon.model.CouponInfo
 import shop.hyeonme.domain.coupon.projection.CouponInfoProjectionData
 import shop.hyeonme.domain.gifticon.mapper.toModel
-import shop.hyeonme.domain.inventory.mapper.toDomain
+import shop.hyeonme.domain.inventory.mapper.toEntity
 import shop.hyeonme.domain.inventory.mapper.toModel
 
 fun Coupon.toEntity() = CouponEntity(
     id = id,
     userId = userId,
-    inventory = inventory.toDomain(),
+    inventory = inventory.toEntity(),
     createdAt = createdAt
 )
 
