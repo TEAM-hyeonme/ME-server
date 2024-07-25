@@ -1,6 +1,7 @@
 package shop.hyeonme.domain.gifticon
 
 import com.querydsl.jpa.impl.JPAQueryFactory
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import shop.hyeonme.domain.gifticon.mapper.toEntity
 import shop.hyeonme.domain.gifticon.mapper.toModel
@@ -54,6 +55,9 @@ class GifticonPersistenceAdapter(
             )
             .fetch()
             .toModels()
+
+    override fun findGifticonById(id: UUID): Gifticon? =
+        gifticonRepository.findByIdOrNull(id)?.toModel()
 
     override fun findGifticonDetailsById(id: UUID): GifticonInfo? =
         queryFactory.select(
