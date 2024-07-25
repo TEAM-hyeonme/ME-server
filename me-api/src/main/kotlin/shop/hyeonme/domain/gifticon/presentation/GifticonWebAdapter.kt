@@ -12,11 +12,13 @@ import shop.hyeonme.domain.gifticon.mapper.toResponse
 import shop.hyeonme.domain.gifticon.presentation.web.req.CreateGifticonWebRequest
 import shop.hyeonme.domain.gifticon.presentation.web.res.CreateGifticonWebResponse
 import shop.hyeonme.domain.gifticon.presentation.web.res.QueryGifticonDetailsWebResponse
-import shop.hyeonme.domain.gifticon.presentation.web.res.QueryGifticonWebResponse
 import shop.hyeonme.domain.gifticon.presentation.web.res.QueryGifticonsWebResponse
 import shop.hyeonme.domain.gifticon.usecase.CreateGifticonUseCase
 import shop.hyeonme.domain.gifticon.usecase.QueryGifticonDetailsUseCase
 import shop.hyeonme.domain.gifticon.usecase.QueryGifticonsUseCase
+import shop.hyeonme.domain.inventory.mapper.toRequest
+import shop.hyeonme.domain.inventory.presentation.req.web.CreateInventoriesWebRequest
+import shop.hyeonme.domain.inventory.usecase.CreateInventoriesUseCase
 import java.util.*
 import javax.validation.Valid
 
@@ -24,7 +26,8 @@ import javax.validation.Valid
 class GifticonWebAdapter(
     private val createGifticonUseCase: CreateGifticonUseCase,
     private val queryGifticonsUseCase: QueryGifticonsUseCase,
-    private val queryGifticonDetailsUseCase: QueryGifticonDetailsUseCase
+    private val queryGifticonDetailsUseCase: QueryGifticonDetailsUseCase,
+    private val createInventoriesUseCase: CreateInventoriesUseCase
 ) {
     @GetMapping
     fun queryGifticons(): ResponseEntity<QueryGifticonsWebResponse> =
@@ -40,4 +43,9 @@ class GifticonWebAdapter(
     fun createGifticon(@RequestBody @Valid request: CreateGifticonWebRequest): ResponseEntity<CreateGifticonWebResponse> =
         createGifticonUseCase.execute(request.toRequest())
             .let { ResponseEntity.status(HttpStatus.CREATED).body(it.toResponse()) }
+
+    @PostMapping("/admin/{id}")
+    fun createInventories(@PathVariable id: UUID, @RequestBody @Valid request: CreateInventoriesWebRequest): ResponseEntity<Unit> =
+        createInventoriesUseCase.execute(id, request.toRequest())
+            .let { ResponseEntity.status(HttpStatus.CREATED).build() }
 }
