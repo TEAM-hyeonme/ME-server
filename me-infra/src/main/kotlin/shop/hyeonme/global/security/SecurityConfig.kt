@@ -61,6 +61,7 @@ class SecurityConfig(
             // Gifticon
             .mvcMatchers(HttpMethod.GET, "/gifticon").authenticated()
             .mvcMatchers(HttpMethod.GET, "/gifticon/{id}").authenticated()
+            .mvcMatchers(HttpMethod.POST, "/gifticon/{id}").authenticated()
             .mvcMatchers(HttpMethod.POST, "/gifticon/admin").hasRole(ADMIN)
             .mvcMatchers(HttpMethod.POST, "/gifticon/admin/{id}").hasRole(ADMIN)
 

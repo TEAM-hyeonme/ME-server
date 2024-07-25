@@ -14,6 +14,7 @@ import shop.hyeonme.domain.gifticon.presentation.web.res.CreateGifticonWebRespon
 import shop.hyeonme.domain.gifticon.presentation.web.res.QueryGifticonDetailsWebResponse
 import shop.hyeonme.domain.gifticon.presentation.web.res.QueryGifticonsWebResponse
 import shop.hyeonme.domain.gifticon.usecase.CreateGifticonUseCase
+import shop.hyeonme.domain.gifticon.usecase.ExchangeGifticonUseCase
 import shop.hyeonme.domain.gifticon.usecase.QueryGifticonDetailsUseCase
 import shop.hyeonme.domain.gifticon.usecase.QueryGifticonsUseCase
 import shop.hyeonme.domain.inventory.mapper.toRequest
@@ -26,6 +27,7 @@ import javax.validation.Valid
 class GifticonWebAdapter(
     private val createGifticonUseCase: CreateGifticonUseCase,
     private val queryGifticonsUseCase: QueryGifticonsUseCase,
+    private val exchangeGifticonUseCase: ExchangeGifticonUseCase,
     private val queryGifticonDetailsUseCase: QueryGifticonDetailsUseCase,
     private val createInventoriesUseCase: CreateInventoriesUseCase
 ) {
@@ -38,6 +40,12 @@ class GifticonWebAdapter(
     fun queryGifticonDetails(@PathVariable id: UUID): ResponseEntity<QueryGifticonDetailsWebResponse> =
         queryGifticonDetailsUseCase.execute(id)
             .let { ResponseEntity.ok(it.toResponse()) }
+
+    @PostMapping("/{id}")
+    fun exchangeGifticon(@PathVariable id: UUID): ResponseEntity<Unit> =
+        exchangeGifticonUseCase.execute(id)
+           .let { ResponseEntity.status(HttpStatus.CREATED).build() }
+
 
     @PostMapping("/admin")
     fun createGifticon(@RequestBody @Valid request: CreateGifticonWebRequest): ResponseEntity<CreateGifticonWebResponse> =
