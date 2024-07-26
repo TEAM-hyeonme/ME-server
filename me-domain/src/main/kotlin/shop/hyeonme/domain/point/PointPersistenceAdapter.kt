@@ -7,8 +7,10 @@ import shop.hyeonme.domain.point.entity.QUsedPointEntity.usedPointEntity
 import shop.hyeonme.domain.point.mapper.toEntity
 import shop.hyeonme.domain.point.mapper.toModel
 import shop.hyeonme.domain.point.model.SavedPoint
+import shop.hyeonme.domain.point.model.UsedPoint
 import shop.hyeonme.domain.point.projection.QCountAllPointProjectionData
 import shop.hyeonme.domain.point.repository.SavedPointRepository
+import shop.hyeonme.domain.point.repository.UsedPointRepository
 import shop.hyeonme.domain.point.spi.PointPort
 import java.time.LocalDate
 import java.util.*
@@ -16,10 +18,14 @@ import java.util.*
 @Component
 class PointPersistenceAdapter(
     private val queryFactory: JPAQueryFactory,
-    private val savedPointRepository: SavedPointRepository
+    private val savedPointRepository: SavedPointRepository,
+    private val usedPointRepository: UsedPointRepository
 ) : PointPort {
     override fun savePoint(savedPoint: SavedPoint): SavedPoint =
         savedPointRepository.save(savedPoint.toEntity()).toModel()
+
+    override fun usePoint(usedPoint: UsedPoint): UsedPoint =
+        usedPointRepository.save(usedPoint.toEntity()).toModel()
 
     override fun findSavedPointByDate(userId: UUID, date: LocalDate): SavedPoint? =
         savedPointRepository.findByUserIdAndCreatedAt(userId, date)?.toModel()

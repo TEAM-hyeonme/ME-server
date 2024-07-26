@@ -1,7 +1,7 @@
 package shop.hyeonme.domain.point.mapper
 
-import shop.hyeonme.domain.purchase.mapper.toEntity
-import shop.hyeonme.domain.purchase.mapper.toModel
+import shop.hyeonme.domain.coupon.mapper.toEntity
+import shop.hyeonme.domain.coupon.mapper.toModel
 import shop.hyeonme.domain.point.entity.SavedPointEntity
 import shop.hyeonme.domain.point.entity.UsedPointEntity
 import shop.hyeonme.domain.point.model.SavedPoint
@@ -25,7 +25,7 @@ fun UsedPoint.toEntity() = UsedPointEntity(
     id = id,
     amount = amount,
     userId = userId,
-    purchase = purchase.toEntity(),
+    coupon = coupon.toEntity(),
     createdAt = createdAt
 )
 
@@ -33,6 +33,6 @@ fun UsedPointEntity.toModel() = UsedPoint(
     id = id,
     amount = amount,
     userId = userId,
-    purchase = purchase.toModel(),
+    coupon = coupon.toModel(),
     createdAt = createdAt
 )
