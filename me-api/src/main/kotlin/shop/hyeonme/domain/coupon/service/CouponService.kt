@@ -4,5 +4,7 @@ import shop.hyeonme.common.annotation.FacadeService
 
 @FacadeService
 class CouponService(
-    queryCouponService: QueryCouponService
-) : QueryCouponService by queryCouponService
+    queryCouponService: QueryCouponService,
+    commandCouponService: CommandCouponService
+) : QueryCouponService by queryCouponService,
+    CommandCouponService by commandCouponService

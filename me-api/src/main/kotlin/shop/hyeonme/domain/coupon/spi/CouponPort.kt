@@ -1,3 +1,3 @@
 package shop.hyeonme.domain.coupon.spi
 
-interface CouponPort : QueryCouponPort
+interface CouponPort : QueryCouponPort, CommandCouponPort

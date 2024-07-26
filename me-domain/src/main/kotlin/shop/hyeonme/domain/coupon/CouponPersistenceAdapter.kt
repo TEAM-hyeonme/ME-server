@@ -2,7 +2,10 @@ package shop.hyeonme.domain.coupon
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.stereotype.Component
+import shop.hyeonme.domain.coupon.mapper.toEntity
+import shop.hyeonme.domain.coupon.mapper.toModel
 import shop.hyeonme.domain.coupon.mapper.toModels
+import shop.hyeonme.domain.coupon.model.Coupon
 import shop.hyeonme.domain.coupon.model.CouponInfo
 import shop.hyeonme.domain.coupon.repository.CouponRepository
 import shop.hyeonme.domain.coupon.spi.CouponPort
@@ -44,4 +47,7 @@ class CouponPersistenceAdapter(
                 coupon.userId.eq(userId)
             )
             .fetchFirst()
+
+    override fun saveCoupon(coupon: Coupon): Coupon =
+        couponRepository.save(coupon.toEntity()).toModel()
 }

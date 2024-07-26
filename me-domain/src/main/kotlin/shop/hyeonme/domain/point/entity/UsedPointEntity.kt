@@ -2,7 +2,7 @@ package shop.hyeonme.domain.point.entity
 
 import org.springframework.data.annotation.CreatedDate
 import shop.hyeonme.common.base.BaseLongEntity
-import shop.hyeonme.domain.purchase.entity.PurchaseEntity
+import shop.hyeonme.domain.coupon.entity.CouponEntity
 import java.time.LocalDate
 import java.util.*
 import javax.persistence.*
@@ -20,8 +20,8 @@ class UsedPointEntity(
     val userId: UUID,
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "purchase_id", columnDefinition = "BIGINT", nullable = false)
-    val purchase: PurchaseEntity,
+    @JoinColumn(name = "coupon_id", columnDefinition = "BINARY(16)", nullable = false)
+    val coupon: CouponEntity,
 
     @CreatedDate
     @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")

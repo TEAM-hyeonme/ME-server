@@ -2,6 +2,7 @@ package shop.hyeonme.domain.point.service.impl
 
 import shop.hyeonme.common.annotation.CommandService
 import shop.hyeonme.domain.point.model.SavedPoint
+import shop.hyeonme.domain.point.model.UsedPoint
 import shop.hyeonme.domain.point.service.CommandPointService
 import shop.hyeonme.domain.point.spi.PointPort
 
@@ -11,4 +12,7 @@ class CommandPointServiceImpl(
 ) : CommandPointService {
     override fun savePoint(savedPoint: SavedPoint): SavedPoint =
         pointPort.savePoint(savedPoint)
+
+    override fun usePoint(usedPoint: UsedPoint): UsedPoint =
+        pointPort.usePoint(usedPoint)
 }

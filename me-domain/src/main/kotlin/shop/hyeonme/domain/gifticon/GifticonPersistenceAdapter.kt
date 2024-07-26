@@ -24,6 +24,9 @@ class GifticonPersistenceAdapter(
     override fun saveGifticon(gifticon: Gifticon): Gifticon =
         gifticonRepository.save(gifticon.toEntity()).toModel()
 
+    override fun findGifticonById(id: UUID): Gifticon? =
+        gifticonRepository.findByIdOrNull(id)?.toModel()
+
     override fun findGifticons(): List<GifticonInfo> =
         queryFactory.select(
             GifticonInfoProjectionData(
@@ -33,31 +36,16 @@ class GifticonPersistenceAdapter(
                 gifticon.notice,
                 gifticon.brand,
                 gifticon.profileUrl,
-                inventory.count().intValue()
+                countInventoryQuery()
             )
         ).from(gifticon)
             .leftJoin(inventory).on(gifticon.eq(inventory.gifticon))
             .leftJoin(coupon).on(inventory.eq(coupon.inventory))
-            .where(
-                coupon.isNull
-            )
-            .groupBy(
-                gifticon.id,
-                gifticon.name,
-                gifticon.point,
-                gifticon.notice,
-                gifticon.brand,
-                gifticon.profileUrl,
-                inventory
-            )
             .orderBy(
                 gifticon.name.asc()
             )
             .fetch()
             .toModels()
-
-    override fun findGifticonById(id: UUID): Gifticon? =
-        gifticonRepository.findByIdOrNull(id)?.toModel()
 
     override fun findGifticonDetailsById(id: UUID): GifticonInfo? =
         queryFactory.select(
@@ -68,24 +56,20 @@ class GifticonPersistenceAdapter(
                 gifticon.notice,
                 gifticon.brand,
                 gifticon.profileUrl,
-                inventory.count().intValue()
+                countInventoryQuery()
             )
         ).from(gifticon)
             .leftJoin(inventory).on(gifticon.eq(inventory.gifticon))
             .leftJoin(coupon).on(inventory.eq(coupon.inventory))
             .where(
-                gifticon.id.eq(id),
-                coupon.isNull
-            )
-            .groupBy(
-                gifticon.id,
-                gifticon.name,
-                gifticon.point,
-                gifticon.notice,
-                gifticon.brand,
-                gifticon.profileUrl,
-                inventory
+                gifticon.id.eq(id)
             )
             .fetchFirst()
             .toModel()
+
+    private fun countInventoryQuery() =
+        queryFactory.select(
+            inventory.count().intValue()
+        ).from(inventory)
+            .where(coupon.isNull)
 }
