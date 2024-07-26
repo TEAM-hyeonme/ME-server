@@ -4,6 +4,7 @@ plugins {
     kotlin("plugin.jpa") version "1.8.10"
     id("org.springframework.boot") version "2.7.5"
     id("io.spring.dependency-management") version "1.0.13.RELEASE"
+    application
 }
 
 subprojects {
@@ -57,4 +58,9 @@ allprojects {
     repositories {
         mavenCentral()
     }
+
+}
+
+application {
+    mainClass.set("shop.hyeonme.MeServerApplication")
 }
