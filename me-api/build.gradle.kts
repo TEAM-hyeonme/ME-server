@@ -1,5 +1,6 @@
 plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.7.20"
+    application
 }
 
 dependencies {
@@ -25,4 +26,8 @@ kapt {
         arg("mapstruct.defaultComponentModel", "spring")
         arg("mapstruct.unmappedTargetPolicy", "ignore")
     }
+}
+
+application {
+    mainClass.set("shop.hyeonme.MeServerApplication")
 }
