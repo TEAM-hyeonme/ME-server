@@ -3,7 +3,7 @@ name: ME_SERVER_CD
 on:
   push:
     branches:
-      - develop
+      - 
 
 env:
   PROJECT_ID: ${{ secrets.GCE_PROJECT }}
